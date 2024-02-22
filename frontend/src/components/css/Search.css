@@ -1,0 +1,46 @@
+.search-form {
+  display: flex;
+  justify-content:center;
+}
+
+.search-section {
+  margin-right: 10px; 
+}
+
+.search {
+  justify-content: center;
+  text-align: center;
+  font-size:x-small;
+  margin-top: 100px; 
+}
+
+form {
+  display: flex;
+  align-items: center;
+}
+
+select,
+input {
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #724966;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+label, select, input, button {
+  margin-right: 10px; 
+}
+
+.buttons-container {
+  display: flex;
+  gap: 10px; 
+  padding-right: 20px;
+}
+
+

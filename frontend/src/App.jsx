@@ -16,15 +16,22 @@ import Header from './components/Header';
 function App() {
   return (
     <Router>
-      <Header/>
+      <header>
+        <Header/>
+      </header>
       <Search/>
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/register" element={<Register/>} />
-        <Route path="/product/:id" element={<ProductDetail/>} />
-        <Route path="/confirm-reservation" element={<ReservationConfirmation/>} />
-        <Route path="/admin" element={<Admin/>} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/register" element={<Register/>} />
+          <Route path="/product/:id" element={<ProductDetail/>} />
+          <Route path="/confirm-reservation" element={<ReservationConfirmation/>} />
+          <Route path="/admin" element={<Admin/>} />
+        </Routes>
+      </main>
+      <footer>
+
+      </footer>
     </Router>
   );
 }

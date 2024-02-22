@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./css/Header.css";
+import "./css/Search.css";
 
 const instrumentos = [
   {
@@ -60,11 +60,11 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header>
+    <div className="search">
+      <div className="search-title">
         <h1>Busca los mejores instrumentos musicales</h1>
-      </header>
-      <main>
+      </div>
+      <div>
         <form onSubmit={handleSubmit} className="search-form">
           <div className="search-section">
             <label htmlFor="tipoInstrumento">Tipo de instrumento:</label>
@@ -103,7 +103,7 @@ function App() {
           </div>
           <button type="submit">Buscar</button>
         </form>
-      </main>
+      </div>
     </div>
   );
 }

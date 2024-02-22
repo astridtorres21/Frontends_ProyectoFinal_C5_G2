@@ -1,76 +1,43 @@
-.header {
-  display: flex;
-  align-items: center; /* Alinea los elementos verticalmente en el centro */
-  justify-content: space-between;
-  padding: 10px; /* Otra opción para ajustar el espacio entre el logo y los botones */
-}
-
-.logo {
-  width: 100px; /* Ajusta el tamaño según sea necesario */
-  height: auto; /* Mantiene la proporción original */
-}
-
-.logo-container {
-  margin-right: 20px; /* Espacio a la derecha del logo */
-}
-
-.buttons-container {
-  display: flex;
-  gap: 10px; /* Espacio entre los botones */
-}
-
-.buttons-container {
-  display: flex;
-  gap: 10px; /* Espacio entre los botones */
-}
-
 body {
   font-family: sans-serif;
   margin: 0;
-  padding: 20px;
 }
 
 header {
-  background-color: #333;
+  background-color: #53354a;
   color: #fff;
   padding: 10px;
+  position: fixed;
+  top: 0;
   text-align: center;
-}
+  z-index: 1000;
+  width: 100%;
 
+}
 main {
   max-width: 500px;
   margin: 0 auto;
 }
 
-form {
+.header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-label {
-  margin-bottom: 5px;
-}
-
-select,
-input {
-  padding: 5px;
-  margin-bottom: 10px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.search-form {
-  display: flex;
+  align-items: center; 
   justify-content: space-between;
+  padding: 10px; 
+}
+.logo {
+  width: 120px; 
+  height: auto; 
+}
+.logo-container {
+  margin-right: 20px;
+  font-size: 30px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
-.search-section {
-  margin-right: 10px; /* Ajusta el espacio entre cada sección de búsqueda */
-}
+
+
+
+
+
+
