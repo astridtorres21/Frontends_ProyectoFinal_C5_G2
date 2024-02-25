@@ -1,0 +1,52 @@
+
+.categories-section {
+    margin-bottom: 40px; 
+}
+
+.title-categorias{
+    font-size: 72px;
+}
+
+
+.category-cards {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+}
+
+
+.category-card {
+    width: calc(20% - 20px);
+    margin: 10px; 
+    padding: 20px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9; 
+}
+
+
+.category-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px; 
+}
+
+
+.category-card h3 {
+    color: #333; 
+    margin-top: 10px; 
+}
+
+
+.category-card span {
+    color: #666; 
+    font-size: 14px; 
+}
+
+/* Estilo para la imagen del piano */
+.category-card img.piano-img {
+    width: 100%; /* Ancho automático */
+    height: 100%; /* Altura del 100% del contenedor */
+    max-height: 80%; /* Altura máxima */
+  }
+  

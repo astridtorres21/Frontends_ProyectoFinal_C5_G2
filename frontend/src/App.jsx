@@ -11,14 +11,20 @@ import Home from './components/Home';
 import ReservationConfirmation from './components/ReservationConfirmation';
 import Admin from './components/Admin';
 import Header from './components/Header';
+import Body from './components/Body';
+import Footer from './components/Footer';
 
 
 function App() {
   return (
     <Router>
+      
       <Header/>
-      <Search/>
-      <Routes>
+      <Body/>
+      <Footer/>
+      
+      
+        <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/product/:id" element={<ProductDetail/>} />

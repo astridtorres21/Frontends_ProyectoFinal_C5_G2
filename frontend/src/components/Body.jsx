@@ -1,6 +1,10 @@
-import React from 'react';
 import Search from './Search';
-import './Body.css';
+import React, { useState } from 'react';
+import './css/Body.css';
+
+
+
+
 
 const Body = () => {
   return (
@@ -9,11 +13,12 @@ const Body = () => {
         <h2 className="title-search">La clave de tus sueños musicales</h2>
         <Search /> 
       </section>
+
       <section className="categories-section">
-        <h2>Categorías</h2>
+        <h2 className='title-categorias'>Categorías</h2>
         <div className="category-cards">
           <div className="category-card">
-            <img src="images/body/Cuerdas.jpg" alt="Cuerdas" />
+            <img src={process.env.PUBLIC_URL + '/images/body/Cuerdas.jpg'} alt="Cuerdas" />
             <h3>Cuerdas</h3>
             <span>Descubre la magia de las cuerdas y 
                 crea melodías cautivadoras con nuestra 
@@ -21,6 +26,7 @@ const Body = () => {
                 perfectos para expresar emociones y 
                 añadir profundidad a tu música.</span>
           </div>
+
           <div className="category-card">
             <img src="images/body/Vientos.jpg" alt="Vientos" />
             <h3>Vientos</h3>
@@ -32,7 +38,7 @@ const Body = () => {
                 que te inspira.</span>
           </div>
           <div className="category-card">
-            <img src="images/body/Teclados.jpg" alt="Teclados" />
+            <img src="images/body/Teclados.jpg" alt="Teclados" className="piano-img"/>
             <h3>Teclados</h3>
             <span>Explora un mundo de posibilidades musicales 
                 con nuestros teclados. Desde pianos clásicos 
@@ -101,4 +107,5 @@ const Body = () => {
 };
 
 export default Body;
+
 
