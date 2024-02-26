@@ -17,10 +17,10 @@ const Header = () => {
         <div className="logo-container">
           <Link to="/">
             <img
-              src={process.env.PUBLIC_URL + '/images/logo.jpg'}
+              src={process.env.PUBLIC_URL + '/images/logo.png'}
               alt="Logo"
               className="logo"
-            />
+            /> 
           </Link>
         </div>
         <div className="buttons-container">
