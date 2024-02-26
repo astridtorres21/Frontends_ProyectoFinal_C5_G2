@@ -5,7 +5,7 @@ const Home = () => {
 
   return (
     <div>
-      <h2>Home</h2>
+  
       {/* Interfaz de administración */}
     </div>
   );
