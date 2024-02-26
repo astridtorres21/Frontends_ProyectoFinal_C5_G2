@@ -43,10 +43,60 @@
     font-size: 14px; 
 }
 
-/* Estilo para la imagen del piano */
+
 .category-card img.piano-img {
-    width: 100%; /* Ancho automático */
-    height: 100%; /* Altura del 100% del contenedor */
-    max-height: 80%; /* Altura máxima */
-  }
-  
+    width: 100%; 
+    height: 100%; 
+    max-height: 72%; 
+}
+
+.products-cards {
+    display: flex; 
+    flex-wrap: wrap;
+    
+    background-color: #E4A951;
+}
+
+
+.title-products{
+    font-size: 100px;
+    margin-top: 180px;
+    margin-left: 150px;
+}
+
+.products-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px; 
+}
+
+.products-card{
+    width: calc(40% - 20px);
+    margin: 50px; 
+    padding: 20px; 
+    border: 3px solid #000;
+    border-radius: 5px;
+    background-color: #fff; 
+    
+
+}
+
+.products-card h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000; 
+    font-size: 17px; 
+
+}
+
+
+
+
+
+
+
+
+
+
+
