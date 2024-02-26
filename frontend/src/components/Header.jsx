@@ -22,7 +22,6 @@ const Header = () => {
               className="logo"
             /> 
           </Link>
-          Encuentra tu ritmo
         </div>
         <div className="buttons-container">
           {isLogged ? (

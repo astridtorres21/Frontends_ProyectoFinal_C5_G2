@@ -4,9 +4,9 @@ body {
 }
 
 header {
-  background-color: #53354a;
-  color: #fff;
-  padding: 10px;
+  background-color: white;
+  color: black;
+  padding: 0px;
   position: fixed;
   top: 0;
   text-align: center;
@@ -34,10 +34,3 @@ main {
   font-size: 30px;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
-
-
-
-
-
-
-
