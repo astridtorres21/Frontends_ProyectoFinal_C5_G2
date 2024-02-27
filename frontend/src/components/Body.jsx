@@ -57,47 +57,54 @@ const Body = () => {
           </div>
         </div>
       </section>
+
+
       <section className="products-section">
-        <h2>Productos</h2>
+
+  
+
         <div className="products-cards">
+
+        <h2 className='title-products'>Productos</h2>
+
           <div className="products-card">
-            <img src="" alt="Guitarra Acustica Yamaha FG800" />
+            <img src="images/body/Guitarra acústica Yamaha FG800.jpg" alt="Guitarra Acustica Yamaha FG800" />
             <h3>Guitarra acústica Yamaha FG800</h3>
           </div>
           <div className="products-card">
-            <img src="" alt="Saxofón alto Selmer AS42" />
+            <img src="images/body/Saxofón alto Selmer AS42.jpg" alt="Saxofón alto Selmer AS42" />
             <h3>Saxofón alto Selmer AS42</h3>
           </div>
           <div className="products-card">
-            <img src="" alt="Piano digital Casio Privia PX-160" />
+            <img src="images/body/Piano digital Casio Privia PX-160.jpg" alt="Piano digital Casio Privia PX-160" />
             <h3>Piano digital Casio Privia PX-160</h3>
           </div>
           <div className="products-card">
-            <img src="" alt="Batería Pearl Export Series" />
+            <img src="images/body/Batería Pearl Export Series.jpg" alt="Batería Pearl Export Series" />
             <h3>Batería Pearl Export Series</h3>
           </div>
           <div className="products-card">
-            <img src="" alt="Violín Yamaha V5SC" />
+            <img src="images/body/Violín Yamaha V5SC.jpg" alt="Violín Yamaha V5SC" />
             <h3>Violín Yamaha V5SC</h3>
           </div>
           <div className="products-card">
-            <img src="" alt="Flauta traversa Gemeinhardt 2SP" />
+            <img src="images/body/Flauta traversa Gemeinhardt 2SP.jpg" alt="Flauta traversa Gemeinhardt 2SP" />
             <h3>Flauta traversa Gemeinhardt 2SP</h3>
           </div>
           <div className="products-card">
-            <img src="" alt="Teclado MIDI Akai MPK Mini" />
+            <img src="images/body/Teclado MIDI Akai MPK Mini.jpg" alt="Teclado MIDI Akai MPK Mini" />
             <h3>Teclado MIDI Akai MPK Mini</h3>
           </div>
           <div className="products-card">
-            <img src="" alt="Trompeta Yamaha YTR-2330" />
+            <img src="images/body/Trompeta Yamaha YTR-2330.jpg" alt="Trompeta Yamaha YTR-2330" />
             <h3>Trompeta Yamaha YTR-2330</h3>
           </div>
           <div className="products-card">
-            <img src="" alt="Bajo eléctrico Fender Precision Bass" />
+            <img src="images/body/Bajo eléctrico Fender Precision Bass.jpg" alt="Bajo eléctrico Fender Precision Bass" />
             <h3>Bajo eléctrico Fender Precision Bass</h3>
           </div>
           <div className="products-card">
-            <img src="" alt="Cajón peruano LP Americana" />
+            <img src="images/body/Cajón peruano LP Americana.jpg" alt="Cajón peruano LP Americana" />
             <h3>Cajón peruano LP Americana</h3>
           </div>
         </div>
