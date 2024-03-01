@@ -9,11 +9,6 @@ import './css/Body.css';
 const Body = () => {
   return (
     <div className="body">
-      <section className="search-section">
-        <h2 className="title-search">La clave de tus sueños musicales</h2>
-        <Search /> 
-      </section>
-
       <section className="categories-section">
         <h2 className='title-categorias'>Categorías</h2>
         <div className="category-cards">
