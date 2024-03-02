@@ -4,7 +4,7 @@ import {
     , Route 
     , Routes
 } from 'react-router-dom';
-import Login from './components/Login';
+import NewHeader from './components/NewHeader';
 import Register from './components/Register';
 import Search from './components/Search';
 import ProductDetail from './components/ProductDetail';
@@ -14,6 +14,7 @@ import Admin from './components/Admin';
 import Header from './components/Header';
 import Body from './components/Body';
 import Footer from './components/Footer';
+import Login from './components/Login';
 
 
 function App() {
