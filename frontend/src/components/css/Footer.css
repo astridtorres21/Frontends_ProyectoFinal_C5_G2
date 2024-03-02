@@ -49,4 +49,15 @@
 .copyright{
     margin-left: 15px;
 }
-
+.social-medias-title {
+    font-size: 15cm; /* Tamaño de letra 15cm */
+    text-align: left; /* Alineación a la izquierda */
+  }
+  
+  .social-medias img {
+    width: 50px; /* Ancho de imagen reducido */
+    height: 50px; /* Altura de imagen reducida */
+  }
+  .copy {
+    margin-top: 15px;
+  }
