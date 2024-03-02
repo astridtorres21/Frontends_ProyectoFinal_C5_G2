@@ -11,13 +11,19 @@ const Footer = () => {
       <div className="left-content">
         <img src="images/footer/nota_dorada.png" alt="Isologotipo de la empresa" className="logo_nota" />
         <img src="images/footer/logo_blanco.png" alt="Isologotipo de la empresa" className="logo_blanco" />
-        <span className="copyright">&copy; {year}</span>
+        <div>
+        <span className="copyright">&copy; Doremi {year}. Todos los derechos reservados</span>
+        </div>
       </div>
       <div className='right-content'>
+        <div>
+          <h4>Seguinos en nuestras redes sociales</h4>
+        </div>
         <img src="images/footer/instagram.png" alt="Instagram" />
         <img src="images/footer/linkedin.png" alt="Linkedin" />
         <img src="images/footer/tiktok.png" alt="TikTok" />
-      </div>
+        <img src="images/footer/X.png" alt="X" />
+        </div>
     </footer>
   );
 };
