@@ -1,14 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import products from '../components/product.json';
+import '../components/css/ProductDetail.css';
 import { Link } from 'react-router-dom';
-import './css/ProductDetail.css';
 
-const ProductDetail = ({ match }) => {
+const ProductDetail = () => {
+  const { id } = useParams();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedThumbnail, setSelectedThumbnail] = useState(0);
+
+  useEffect(() => {
+    const product = products.find((product) => product.id === parseInt(id));
+    setSelectedProduct(product);
+  }, [id]);
+
+  const changeThumbnail = (index) => {
+    setSelectedThumbnail(index);
+  };
+
+  const navigateThumbnails = (direction) => {
+    const newIndex =
+      direction === 'up'
+        ? selectedThumbnail - 1
+        : selectedThumbnail + 1;
+
+    if (newIndex >= 0 && newIndex < selectedProduct.images.length) {
+      setSelectedThumbnail(newIndex);
+    }
+  };
+
+  if (!selectedProduct) {
+    return <div className="error-container">Producto no encontrado</div>;
+  }
+
   return (
-    <div>
+    <>
       {/* Primer bloque */}
       <div className="productDetail-header">
         <div className="productDetail-header-title-left">
-          <h1>Titulo del Producto 1</h1>
+          <h1>{selectedProduct.title}</h1>
         </div>
         <div className="productDetail-header-right">
           <Link to="/">
@@ -16,35 +46,35 @@ const ProductDetail = ({ match }) => {
           </Link>
         </div>
       </div>
-
-      {/* Segundo bloque */}
-      <div className="productDetail-header">
-        <div className="productDetail-header-title-left">
-          <div className="col-6 col-s-9 product-detail-main-image">
-            <img src="https://www.eltiempo.com/files/article_main_1200/uploads/2023/03/09/640a5f6c7f159.jpeg" alt="Main" />
-          </div>
-
-          <div className="col-3 col-s-12">
-            <div className="aside">
-              <div className="product-detail-row">
-                <img src="https://www.eltiempo.com/files/article_main_1200/uploads/2023/03/09/640a5f6c7f159.jpeg" alt="Image1" />
-              </div>
-              <div className="product-detail-row">
-                <img src="https://http2.mlstatic.com/D_NQ_NP_2X_996993-MLU69825293985_062023-F.webp" alt="Image2" />
-              </div>
-              <div className="product-detail-row">
-                <img src="https://www.eltiempo.com/files/article_main_1200/uploads/2023/03/09/640a5f6c7f159.jpeg" alt="Image1" />
-              </div>
+      <div className="container">
+        <div className="product-container">
+          <div className="product-images">
+            <img
+              src={process.env.PUBLIC_URL + '/images/product/' + selectedProduct.images[selectedThumbnail]}
+              alt={`Producto ${selectedProduct.id} Imagen principal`}
+              className="main-image"
+              />
+            <div className="thumbnail-container">
+              {selectedProduct.images.map((image, index) => (
+                <img
+                  key={index}
+                  src={process.env.PUBLIC_URL + '/images/product/' + image}
+                  alt={`Producto ${selectedProduct.id} Imagen ${index + 1}`}
+                  className={`product-thumbnail ${
+                    index === selectedThumbnail ? 'selected' : ''
+                  }`}
+                  onClick={() => changeThumbnail(index)}
+                />
+              ))}
             </div>
           </div>
-        </div>
-
-        <div className="productDetail-header-right  ">
-          <h5>Descripción del Producto</h5>
+          <div className="product-details">
+            <p>{selectedProduct.description}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
-}
+};
 
 export default ProductDetail;
