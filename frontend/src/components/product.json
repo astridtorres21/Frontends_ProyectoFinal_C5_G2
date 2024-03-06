@@ -1,9 +1,9 @@
 [
   {
-    "id": 1,
-    "title": "Bajo Eléctrico Fender Player Jazz Bass V Sunburst 5 Cuerdas Acabado Del Cuerpo Laqueado Color 3-color Sunburst Orientación De La Mano Diestro",
-    "description": "SONIDO AUTÉNTICO El Bajo Eléctrico Fender Player Jazz Bass V Sunburst 5 Cuerdas posee dos pastillas de una bobina que proporcionan un sonido inspirador, clásico y auténtico. Su sonido retumbante es fuerte y notorio, combinando con una sensación de comodidad para una inyección de inspiración creativa. CARACTERÍSTICAS Este instrumento cuenta con un cuerpo de aliso con acabado brillante. Incluye dos pastillas Jazz Bass de la Serie Player y dos controles de volumen y uno de tono. El mástil tiene un perfil \"C moderna\" y el diapasón tiene un radio de 9,5”.",
-    "images": [
+    "instrumento_id": 1,
+    "nombre": "Bajo Eléctrico Fender",
+    "descripcion": "SONIDO AUTÉNTICO",
+    "imagen": [
       "b0.jpg",
       "b00.jpg",
       "b01.jpg",
@@ -13,10 +13,10 @@
     ]
   },
   {
-    "id": 2,
-    "title": "Bateria Pearl Vinotinto Roadshow Rs525sc/c91",
-    "description": "Roadshow cuentan con 9 capas de poplar para garantizar un tono óptimo y diseñados para generar una resonancia que se proyecta con fuerza cuando se golpean sus parches. El borde de apoyo de los cascos es donde gran parte del sonido comienza en una bateria y la Roadshow cuenta con bordes de apoyo de 45 grados cortados a mano que consiguen una estabilidad mayor y una afinación mas precisa. ¿Que mas se puede pedir? Obtén todo lo que necesitas para empezar a aporrear tambores con el completo kit de bateria de 5 piezas de batería de Pearl Roadshow en un clásico acabado negro brillante.",
-    "images": [
+    "instrumento_id": 2,
+    "nombre": "Bateria Pearl",
+    "descripcion": "Roadshow ",
+    "imagen": [
       "Ba00.jpg",
       "Ba01.jpg",
       "Ba02.jpg",
@@ -24,6 +24,42 @@
       "Ba04.jpg",
       "Ba05.jpg",
       "Ba06.jpg"
+    ]
+  },
+  {
+    "instrumento_id": 3,
+    "nombre": "Violín Yamaha ",
+    "descripcion": "V5SC ",
+    "imagen": [
+      "Vi00.jpg",
+      "Vi01.jpg",
+      "Vi02.jpg",
+      "Vi03.jpg"
+      
+    ]
+  },
+  {
+    "instrumento_id": 4,
+    "nombre": "Teclado Midi Mini",
+    "descripcion": "Mini Mk3",
+    "imagen": [
+      "Te00.jpg",
+      "Te01.jpg",
+      "Te02.jpg",
+      "Te03.jpg"
+      
+    ]
+  },
+  {
+    "instrumento_id": 5,
+    "nombre": "Cajon Latin",
+    "descripcion": "Percussion Lp1442",
+    "imagen": [
+      "Ca00.jpg",
+      "Ca01.jpg",
+      "Ca02.jpg",
+      "Ca03.jpg"
+    
     ]
   }
 ]

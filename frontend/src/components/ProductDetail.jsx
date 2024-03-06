@@ -8,11 +8,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedThumbnail, setSelectedThumbnail] = useState(0);
-
-  useEffect(() => {
-    const product = products.find((product) => product.id === parseInt(id));
-    setSelectedProduct(product);
-  }, [id]);
+  const [loading, setLoading] = useState(true);
 
   const changeThumbnail = (index) => {
     setSelectedThumbnail(index);
@@ -29,6 +25,58 @@ const ProductDetail = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/instrumentos/buscarPorId/' + parseInt(id));
+        const data = await response.json();
+
+        // Fusionas los datos del backend con el JSON importado
+        const productFromBackend = data;
+        const productFromJSON = products.find((product) => product.instrumento_id === parseInt(id));
+
+        if (productFromBackend && productFromJSON) {
+          // Combina las propiedades de ambos objetos
+          const mergedProduct = {
+            ...productFromBackend,
+            imagen: productFromJSON.imagen,
+          };
+          console.log('productFromJSON--->',productFromJSON.imagen);
+          console.log('productFromBackend--->',productFromBackend);
+          console.log('mergedProduct--->',mergedProduct);
+
+          setSelectedProduct(mergedProduct);
+        } else {
+          setSelectedProduct(productFromBackend);
+        }
+
+
+        setLoading(false);
+
+/*
+
+        const response = await fetch(`http://localhost:8081/instrumentos/buscarPorId/${id}`);
+        const data = await response.json();
+
+        setSelectedProduct(data);
+        setLoading(false);        */
+      } catch (error) {
+        console.error('Error al obtener los datos del servidor:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  if (loading) {
+    return <div className="loading-container">Cargando...</div>;
+  }
+
+  if (!selectedProduct) {
+    return <div className="error-container">Producto no encontrado</div>;
+  }
+
   if (!selectedProduct) {
     return <div className="error-container">Producto no encontrado</div>;
   }
@@ -38,7 +86,7 @@ const ProductDetail = () => {
       {/* Primer bloque */}
       <div className="productDetail-header">
         <div className="productDetail-header-title-left">
-          <h1>{selectedProduct.title}</h1>
+          <h1>{selectedProduct.nombre}</h1>
         </div>
         <div className="productDetail-header-right">
           <Link to="/">
@@ -50,12 +98,12 @@ const ProductDetail = () => {
         <div className="product-container">
           <div className="product-images">
             <img
-              src={process.env.PUBLIC_URL + '/images/product/' + selectedProduct.images[selectedThumbnail]}
+              src={process.env.PUBLIC_URL + '/images/product/' + selectedProduct.imagen[selectedThumbnail]}
               alt={`Producto ${selectedProduct.id} Imagen principal`}
               className="main-image"
               />
             <div className="thumbnail-container">
-              {selectedProduct.images.map((image, index) => (
+              {selectedProduct.imagen.map((image, index) => (
                 <img
                   key={index}
                   src={process.env.PUBLIC_URL + '/images/product/' + image}
@@ -69,7 +117,7 @@ const ProductDetail = () => {
             </div>
           </div>
           <div className="product-details">
-            <p>{selectedProduct.description}</p>
+            <p>{selectedProduct.descripcion}</p>
           </div>
         </div>
       </div>
