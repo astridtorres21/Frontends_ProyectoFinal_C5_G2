@@ -124,4 +124,9 @@ const Body = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Body;
+=======
+export default Body;
+
+>>>>>>> cd551513e01f90e0792da46be427501bc6bb1c71
