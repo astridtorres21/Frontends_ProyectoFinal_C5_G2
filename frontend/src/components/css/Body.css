@@ -1,10 +1,16 @@
-
 .categories-section {
     margin-bottom: 40px; 
+    background-color: #512DA8; 
+    margin-top: -60px;
+    height: 1024px;
 }
 
 .title-categorias{
     font-size: 72px;
+    padding-top: 90px;
+    padding-left: 150px;
+    color: #fff;
+    
 }
 
 
@@ -12,49 +18,63 @@
     display: flex; 
     flex-wrap: wrap; 
     justify-content: space-between; 
+    padding-left: 150px;
+    padding-right: 150px;
+    
 }
 
 
 .category-card {
-    width: calc(20% - 20px);
+/* width: calc(20% - 20px);*/
     margin: 10px; 
     padding: 20px; 
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9; 
+    height: 460px;
+    width: 230px;   
+}
+
+.category-card picture {
+    width: 200px ;
+    height: 200px;
+
+
 }
 
 
 .category-card img {
-    width: 100%;
-    height: auto;
+    width: 200px;
+    height: 200px;
     border-radius: 5px; 
+    padding-left: 10px;
 }
 
 
 .category-card h3 {
+    font-size: 20px;
     color: #333; 
-    margin-top: 10px; 
+    margin-top: 10px;
 }
 
 
 .category-card span {
     color: #666; 
-    font-size: 14px; 
+    font-size: 18px; 
+    text-align: justify;
+    line-height: 1.3;
 }
 
 
-.category-card img.piano-img {
-    width: 100%; 
-    height: 100%; 
-    max-height: 72%; 
-}
+
 
 .products-cards {
     display: flex; 
     flex-wrap: wrap;
-    
-    background-color: #E4A951;
+    background-color: #ffffff;
+    align-content: center;
+    margin-left: 80px;
+
 }
 
 
@@ -64,19 +84,36 @@
     margin-left: 150px;
 }
 
-.products-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px; 
+.picture-product{
+    width: 480px;
+    height: 519px;
+    border-radius: 10px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 30px ;
 }
 
+.picture-product img{
+width: 450px;
+height: 450px;
+padding-top: 20px;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+border-bottom-left-radius: 10px;
+border-bottom-right-radius: 10px;
+
+}
+
+
+
 .products-card{
-    width: calc(40% - 20px);
+    width: calc(38% - 20px);
+    height: 519px;
     margin: 50px; 
     padding: 20px; 
-    border: 3px solid #000;
-    border-radius: 5px;
-    background-color: #fff; 
+    border-radius: 20px;
+    background-color: #512DA8; 
     
 
 }
@@ -85,11 +122,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000; 
+    color: #fff; 
     font-size: 17px; 
+    margin-top: -22px;
 
 }
-
 
 
 
