@@ -1,0 +1,80 @@
+
+button {
+  padding: 10px 20px;
+  background-color: #e4a951;
+  border: 2px solid #e4a951;
+  color: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+h1{
+  font-size: 60px;
+  max-width: 550px;
+}
+
+label, select, input, button {
+  margin-right: 10px; 
+}
+
+.buttons-container {
+  display: flex;
+  gap: 10px; 
+  padding-right: 20px;
+}
+
+.search {
+  margin-top: 60px;
+  height: 400px;
+  text-align: center;
+  opacity: 80%;
+  justify-content: center;
+  text-align: center;
+  font-size:x-small;
+
+}
+
+.search-form {
+  width: 400px;
+}
+
+.search-title {
+  text-align: center;
+}
+
+
+.search-section {
+  display: flex;
+  width: 400px;
+  text-align: center;
+  top: 0px;
+}
+
+
+.search-section > div {
+  font-size: 30px;
+  width: 100%;
+}
+
+.search-section input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 80%;
+}
+
+.search-section-date {
+  display: flex;
+  width: 400px;
+}
+
+.search-section-date > div {
+  display: inline;
+  width: 100%;
+  font-size: 30px;
+}
+
+.search-section-date input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 80%;
+}
