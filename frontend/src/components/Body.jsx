@@ -2,10 +2,6 @@ import Search from './Search';
 import React, { useState } from 'react';
 import './css/Body.css';
 
-
-
-
-
 const Body = () => {
   return (
     <div className="body">
