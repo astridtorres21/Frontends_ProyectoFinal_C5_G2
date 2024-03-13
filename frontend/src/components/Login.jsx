@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './css/Login.css';
 
-function App() {
+function LoginPage() {
   return (
     <div className="container">
       <div className="left-section">
         <img src="ruta/al/logo.png" alt="Logo" />
-        <h2>Tu armonía, nuestra pasión </h2>
+        <h2>Tu armonía, nuestra pasión</h2>
       </div>
       <div className="right-section">
         <h3>Iniciar sesión</h3>
@@ -26,5 +26,6 @@ function App() {
   );
 }
 
-export default App;
+export default LoginPage;
+
 
