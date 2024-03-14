@@ -1,0 +1,62 @@
+/* Login.css */
+
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .left-section {
+    flex: 1;
+    background-image: url("https://i.imgur.com/TGM4d3w.jpeg");
+    background-size: cover;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .right-section {
+    flex: 1;
+    background-color: violet;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .input-group input {
+    width: 300px; /* Ajusta el ancho según sea necesario */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  button:active {
+    background-color: #45a049;
+  }
+  
