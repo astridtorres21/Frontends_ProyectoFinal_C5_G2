@@ -22,7 +22,6 @@
 
   .input {
     border-radius: 20px;
-    margin-bottom: 100px;
   }
 
   
@@ -45,6 +44,16 @@
   
 .account {
   text-decoration: none;
+}
+
+.input-form {
+  margin-bottom: 30px;
+  
+}
+
+.button-register {
+  padding-top: 60px;
+
 }
 
   
