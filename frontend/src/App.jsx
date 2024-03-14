@@ -14,10 +14,6 @@ import Register from './components/Register'; // Solo importa una vez el compone
 function App() {
   return (
     <Router>
-      <Header />
-      <Search />
-      <Body />
-      <Footer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} /> {/* Mostrar Register solo en esta ruta */}
