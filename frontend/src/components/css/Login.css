@@ -7,18 +7,25 @@
   
   .left-section {
     flex: 1;
-    background-image: url("https://i.imgur.com/TGM4d3w.jpeg");
+    background-image: url('https://i.imgur.com/TGM4d3w.jpeg');
     background-size: cover;
     color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 20px;
+    height: 100%; /* 100% de la altura del contenedor principal */
   }
+
+  .title-left {
+    font-size: 74px;
+    text-align: center;
+    padding-top: 180px;
+
+
+  }
+
   
   .right-section {
     flex: 1;
-    background-color: violet;
+    background-color:#512DA8;
     padding: 20px;
     display: flex;
     flex-direction: column;
