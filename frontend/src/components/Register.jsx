@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './css/Register.css';
 
 const Register = () => {
-  // Estados para almacenar los datos del formulario
+  
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -10,10 +10,10 @@ const Register = () => {
     password: ''
   });
 
-  // Estado para manejar el mensaje de confirmación
+
   const [confirmationMessage, setConfirmationMessage] = useState('');
 
-  // Manejador para cambios en los campos del formulario
+  
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -21,18 +21,16 @@ const Register = () => {
     });
   };
 
-  // Validación del correo electrónico
+
   const validateEmail = (email) => {
-    // Expresión regular para validar el formato de correo electrónico
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  // Manejador para enviar el formulario
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validar el formato del correo electrónico
     if (!validateEmail(formData.email)) {
       setConfirmationMessage('El correo electrónico no tiene un formato válido');
       return;
@@ -47,10 +45,8 @@ const Register = () => {
         body: JSON.stringify(formData)
       });
       if (response.ok) {
-        // Aquí puedes manejar la respuesta del backend si es necesario
         setConfirmationMessage('Registro exitoso');
       } else {
-        // Manejo de errores
         setConfirmationMessage('Error en el registro');
       }
     } catch (error) {
@@ -67,7 +63,7 @@ const Register = () => {
       <section className="register-right">
         <form className='register-form' onSubmit={handleSubmit}>
           <h3> <strong>Registrarse</strong></h3>
-          <div>
+          <div className='input-form'>
             <label className='input' htmlFor="firstName"></label>
             <input
               type="text"
@@ -79,7 +75,7 @@ const Register = () => {
               required
             />
           </div>
-          <div>
+          <div className='input-form'>
             <label className='input' htmlFor="lastName"></label>
             <input
               type="text"
@@ -91,7 +87,7 @@ const Register = () => {
               required
             />
           </div>
-          <div>
+          <div className='input-form'>
             <label className='input' htmlFor="email"></label>
             <input
               type="email"
@@ -103,7 +99,7 @@ const Register = () => {
               required
             />
           </div>
-          <div>
+          <div className='input-form'>
             <label className='input' htmlFor="password"></label>
             <input
               type="password"
@@ -116,8 +112,8 @@ const Register = () => {
             />
           </div>
           {confirmationMessage && <p>{confirmationMessage}</p>}
-          <button type="submit">Registrarse</button>
-          <p>¿Ya tienes cuenta? <a href="/login">Iniciar sesión</a></p>
+          <button className='button-register' type="submit">Registrarse</button>
+          <p className='account'>¿Ya tienes cuenta? <a href="/login">Iniciar sesión</a></p>
         </form>
       </section>
     </section>

@@ -1,59 +1,56 @@
 .register-container {
-    display: flex;
-    align-items: stretch; /* Para que ambas secciones ocupen la altura total */
-    height: 100vh; /* 100% de la altura de la ventana */
-  }
-  
-  .picture-left {
-    flex: 1;
-    background-image: url('https://i.imgur.com/TGM4d3w.jpeg');
-    background-size: cover;
-    color: white;
-    padding: 20px;
-    height: 100%; /* 100% de la altura del contenedor principal */
-  }
+  display: flex;
+  align-items: stretch; /* Para que ambas secciones ocupen la altura total */
+  height: 100vh; /* 100% de la altura de la ventana */
+}
 
-  .title-left {
-    font-size: 74px;
-    text-align: center;
-    padding-top: 180px;
+.picture-left {
+  flex: 1;
+  background-image: url('https://i.imgur.com/TGM4d3w.jpeg');
+  background-size: cover;
+  color: white;
+  padding: 20px;
+  height: 100%; /* 100% de la altura del contenedor principal */
+}
 
-  }
+.title-left {
+  font-size: 74px;
+  text-align: center;
+  padding-top: 180px;
+}
 
-  .input {
-    border-radius: 20px;
-  }
+.input {
+  border-radius: 20px;
+  padding-bottom: 60px; /* Espacio entre las etiquetas de los campos */
+}
 
-  
-  .register-right {
-    flex: 1;
-    background-color:#512DA8;
-    padding: 20px;
-    height: 100%; /* 100% de la altura del contenedor principal */
-  }
-  
-  .register-form {
-    background-color: white;
-    padding: 100px;
-    border-radius: 10px;
-    width: 350px;
-    height: 350px;
-    margin-left: 60px;
-    margin-top: 40px;
-  }
-  
+.register-right {
+  flex: 1;
+  background-color:#512DA8;
+  padding: 20px;
+  height: 100%; /* 100% de la altura del contenedor principal */
+}
+
+.register-form {
+  background-color: white;
+  padding: 100px;
+  border-radius: 10px;
+  width: 350px;
+  height: 350px;
+  margin-left: 60px;
+  margin-top: 40px;
+}
+
 .account {
   text-decoration: none;
 }
 
 .input-form {
-  margin-bottom: 30px;
-  
+  margin-bottom: 6px;
 }
 
 .button-register {
-  padding-top: 60px;
-
+  padding-top: 10px;
 }
 
   
