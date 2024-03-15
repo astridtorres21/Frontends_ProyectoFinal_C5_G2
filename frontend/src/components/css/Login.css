@@ -11,27 +11,35 @@
     background-size: cover;
     color: white;
     padding: 20px;
-    height: 100%; /* 100% de la altura del contenedor principal */
+    height: 1060px;
   }
 
   .title-left {
     font-size: 74px;
     text-align: center;
     padding-top: 180px;
-
-
-  }
+ }
 
   
   .right-section {
     flex: 1;
     background-color:#512DA8;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    height: 1080px;
   }
+
+  .form-login {
+    background-color: white;
+    padding: 100px;
+    border-radius: 10px;
+    width: 350px;
+    height: 350px;
+    margin-left: 60px;
+    margin-top: 80px;
+}
+
   
   .input-group {
     margin-bottom: 20px;
@@ -43,7 +51,7 @@
   }
   
   .input-group input {
-    width: 300px; /* Ajusta el ancho según sea necesario */
+    width: 300px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;

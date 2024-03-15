@@ -37,30 +37,31 @@ function Login() {
     <div className="container">
       <div className="left-section">
         <img src="ruta/al/logo.png" alt="Logo" />
-        <h2>Tu armonía, nuestra pasión</h2>
+        <h2 className='title-left'>Tu armonía, 
+        nuestra pasión</h2>
       </div>
       <div className="right-section">
+        <form className='form-login' onSubmit={handleSubmit}>
         <h3>Iniciar sesión</h3>
-        <form onSubmit={handleSubmit}>
           <div className="input-group">
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email"></label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="Ingrese su correo electrónico"
+              placeholder="Correo electrónico"
               value={email}
               onChange={handleEmailChange}
               required
             />
           </div>
           <div className="input-group">
-            <label htmlFor="password">Contraseña:</label>
+            <label htmlFor="password"></label>
             <input
               type="password"
               id="password"
               name="password"
-              placeholder="Ingrese su contraseña"
+              placeholder="Contraseña"
               value={password}
               onChange={handlePasswordChange}
               required
