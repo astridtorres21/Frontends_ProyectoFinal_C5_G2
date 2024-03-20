@@ -4,6 +4,7 @@ import {
     , Route 
     , Routes
 } from 'react-router-dom';
+import Login from './components/Login';
 import Register from './components/Register';
 import Search from './components/Search';
 import ProductDetail from './components/ProductDetail';
@@ -17,14 +18,11 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <Router>
-      <Header/>
-      <Search/>
-      <Body/>
-      <Footer/>      
+    <Router>      
         <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/register" element={<Register/>} />
+        <Route path="/login" element={<Login/>} />
         <Route path="/product/:id" element={<ProductDetail/>} />
         <Route path="/confirm-reservation" element={<ReservationConfirmation/>} />
         <Route path="/admin" element={<Admin/>} />
