@@ -16,13 +16,38 @@
 .title-left {
   font-size: 74px;
   text-align: center;
+  padding-top: 5px;
+}
+
+.logo-section {
+  width: 420px;
+  height: 86px;
+  padding-left: 130px;
   padding-top: 180px;
 }
 
-.input {
-  border-radius: 20px;
-  padding-bottom: 60px; /* Espacio entre las etiquetas de los campos */
+.register-title {
+margin-left: 10px;
+
 }
+
+.input-form {
+  margin-bottom: 20px;
+}
+
+.input-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-form input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
 
 .register-right {
   flex: 1;
@@ -37,12 +62,13 @@
   border-radius: 10px;
   width: 350px;
   height: 350px;
-  margin-left: 60px;
-  margin-top: 40px;
+  margin-left: 100px;
+  margin-top: 110px;
 }
 
 .account {
   text-decoration: none;
+  padding-top: 20px;
 }
 
 .input-form {
@@ -51,6 +77,8 @@
 
 .button-register {
   padding-top: 10px;
+  margin-top: 20px;
+  margin-left: 10px;
 }
 
   

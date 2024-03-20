@@ -58,6 +58,7 @@ const Register = () => {
   return (
     <section className="register-container">
       <section className="picture-left">
+        <img className='logo-section' src="images/logonuevo.png" alt="logo" />
         <h2 className='title-left'>Tu armonía, nuestra pasión</h2>
       </section>
       <section className="register-right">
