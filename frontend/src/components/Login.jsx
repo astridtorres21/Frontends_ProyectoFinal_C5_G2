@@ -36,7 +36,7 @@ function Login() {
   return (
     <div className="container">
       <div className="left-section">
-        <img src="ruta/al/logo.png" alt="Logo" />
+        <img className='logo-section' src="images/logonuevo.png" alt="Logo" />
         <h2 className='title-left'>Tu armonía, 
         nuestra pasión</h2>
       </div>
