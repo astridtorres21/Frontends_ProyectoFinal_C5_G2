@@ -14,6 +14,18 @@ import NewHeader from './components/NewHeader';
 
 function App() {
   return (
+<<<<<<< HEAD
+    <Router>      
+        <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/product/:id" element={<ProductDetail/>} />
+        <Route path="/confirm-reservation" element={<ReservationConfirmation/>} />
+        <Route path="/admin" element={<Admin/>} />
+      </Routes>
+    </Router>
+=======
     <div>
       <NewHeader />
       <Search />
@@ -22,7 +34,7 @@ function App() {
       
       <Router>      
         <Routes>
-          <Route path="/home" element={<Home/>} />
+          <Route path="/" element={<Home/>} />
           <Route path="/register" element={<Register/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/product/:id" element={<ProductDetail/>} />
@@ -31,6 +43,7 @@ function App() {
         </Routes>
       </Router>
     </div>
+>>>>>>> feature_fe_newhome
   );
 }
 
