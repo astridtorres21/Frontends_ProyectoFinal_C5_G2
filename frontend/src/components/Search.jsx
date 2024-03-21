@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./css/Search.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
-function App() {
+function Search({ onSearch }) {
   const [fechaInicio, setFechaInicio] = useState(new Date());
   const [fechaFin, setFechaFin] = useState(new Date());
   const [search, setSearch] = useState("");
+  const [productos, setProductos] = useState([]);
 
   const bgSearch = {
     backgroundImage: 'url(images/bg-search.jpg)',
@@ -24,15 +27,24 @@ function App() {
     setSearch(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Aquí se puede enviar la información a un API o realizar la búsqueda
-
-    alert(
-      `Buscando ${search} para alquilar entre ${fechaInicio} y ${fechaFin}`
-    );
+    try {
+      const response = await fetch(`/instrumentos/buscarPorKeyWord/${search}`);
+      if (!response.ok) {
+        alert(`No se econtrarón productos con el nombre ${search}`)
+        setProductos({});
+        onSearch(data);
+        throw new Error('Error al buscar productos');
+      }
+      const data = await response.json();
+      setProductos(data);
+      onSearch(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
+  
 
   return (
     <div className="search" style={{ ...bgSearch, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
@@ -42,33 +54,45 @@ function App() {
       <div>
         <form onSubmit={handleSubmit} className="search-form">
           <div className="search-section">
-            <div>
-            <input
-              type="text"
-              id="search"
-              name="search"
-              value={search}
-              onChange={handleSearch}
-            />            
+            <div className="input-with-icon">
+              <FontAwesomeIcon icon={faSearch} className="frm-input frm-large-icon"/>
+              <input
+                type="text"
+                id="search"
+                name="search"
+                value={search}
+                onChange={handleSearch}
+                placeholder="Guitarra, Batería, Piano..."
+              />            
             </div>
           </div>
           <div className="search-section-date">
-            <div>
+            <div className="input-with-icon">
+              <FontAwesomeIcon icon={faCalendarAlt} className="frm-input frm-large-icon"/>
               <input
                 type="date"
                 id="fechaInicio"
                 name="fechaInicio"
                 value={fechaInicio}
                 onChange={handleFechaInicioChange}
+                aria-hidden="true"
               />
             </div>
-            <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <div className="input-with-icon">
+              <FontAwesomeIcon icon={faCalendarAlt} className="frm-input frm-large-icon"/>
               <input
                 type="date"
                 id="fechaFin"
                 name="fechaFin"
                 value={fechaFin}
                 onChange={handleFechaFinChange}
+                aria-hidden="true"
               />
             </div>
           </div>
@@ -79,4 +103,4 @@ function App() {
   );
 }
 
-export default App;
+export default Search;

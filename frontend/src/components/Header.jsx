@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './css/Header.css';
 
 const Header = () => {
-    const isLogged = true; // Coloca tu lógica real aquí
+    const isLogged = false; // Coloca tu lógica real aquí
     const handleLogin = () => {
       // Lógica de inicio de sesión
     };
@@ -27,9 +27,15 @@ const Header = () => {
           {isLogged ? (
             <button onClick={handleLogout}>Cerrar sesión</button>
           ) : (
-            <button onClick={handleLogin}>Iniciar sesión</button>
-          )}
-          <button>Crear cuenta</button>
+            <>
+              <Link to="/login">
+                <button onClick={handleLogin}>Iniciar sesión</button>
+              </Link>
+              <Link to="/register">
+                <button>Crear cuenta</button>
+              </Link>
+            </>
+            )}
         </div>
       </header>
     );
