@@ -16,6 +16,10 @@ function App() {
   return (
     <div>
       <NewHeader />
+      <Search />
+      <Body/>
+      <Footer />
+      
       <Router>      
         <Routes>
           <Route path="/" element={<Home/>} />
