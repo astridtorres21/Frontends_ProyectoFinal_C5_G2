@@ -1,5 +1,5 @@
 .footer {
-    background-color: #000001;
+    background-color: #512DA8;
     color: #fff;
     padding: 20px;
     overflow: hidden;
@@ -10,20 +10,11 @@
     width: 50%;
   }
   
-  .logo_nota {
-    width: 20%;
-    height: auto;
-    margin-right: 10px;
-    margin-top: 18px;
-    max-width: 40px; /* Tamaño máximo de la imagen */
+  .logo {
+    margin-left: 15px;
+    margin-top: 10px;
   }
-  
-  .logo_blanco {
-    width: 50%;
-    margin-top: 30px;
-    max-width: 150px; /* Tamaño máximo de la imagen */
-  }
-  
+
   .right-content {
     float: right;
     width: 50%;
@@ -42,17 +33,17 @@
   }
   
   .social-medias-title {
-    font-size: 13px; /* Tamaño de letra ajustado para dispositivos móviles */
+    font-size: 15px;
     text-align: right;
   }
   
   .social-medias img {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 19.95px;
     margin-top: -10px;
   }
   
   .copy {
-    margin-top: 15px;
+    margin-top: 5px;
   }
   
