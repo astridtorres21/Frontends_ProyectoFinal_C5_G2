@@ -3,10 +3,11 @@ import "./css/Search.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
-function App() {
+function Search({ onSearch }) {
   const [fechaInicio, setFechaInicio] = useState(new Date());
   const [fechaFin, setFechaFin] = useState(new Date());
   const [search, setSearch] = useState("");
+  const [productos, setProductos] = useState([]);
 
   const bgSearch = {
     backgroundImage: 'url(images/bg-search.jpg)',
@@ -26,14 +27,22 @@ function App() {
     setSearch(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Aquí se puede enviar la información a un API o realizar la búsqueda
-
-    alert(
-      `Buscando ${search} para alquilar entre ${fechaInicio} y ${fechaFin}`
-    );
+    try {
+      const response = await fetch(`/instrumentos/buscarPorKeyWord/${search}`);
+      if (!response.ok) {
+        alert(`No se econtrarón productos con el nombre ${search}`)
+        setProductos({});
+        onSearch(data);
+        throw new Error('Error al buscar productos');
+      }
+      const data = await response.json();
+      setProductos(data);
+      onSearch(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
   
 
@@ -94,4 +103,4 @@ function App() {
   );
 }
 
-export default App;
+export default Search;
