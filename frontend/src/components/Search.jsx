@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./css/Search.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [fechaInicio, setFechaInicio] = useState(new Date());
@@ -33,6 +35,7 @@ function App() {
       `Buscando ${search} para alquilar entre ${fechaInicio} y ${fechaFin}`
     );
   };
+  
 
   return (
     <div className="search" style={{ ...bgSearch, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
@@ -42,33 +45,45 @@ function App() {
       <div>
         <form onSubmit={handleSubmit} className="search-form">
           <div className="search-section">
-            <div>
-            <input
-              type="text"
-              id="search"
-              name="search"
-              value={search}
-              onChange={handleSearch}
-            />            
+            <div className="input-with-icon">
+              <FontAwesomeIcon icon={faSearch} className="frm-input frm-large-icon"/>
+              <input
+                type="text"
+                id="search"
+                name="search"
+                value={search}
+                onChange={handleSearch}
+                placeholder="Guitarra, Batería, Piano..."
+              />            
             </div>
           </div>
           <div className="search-section-date">
-            <div>
+            <div className="input-with-icon">
+              <FontAwesomeIcon icon={faCalendarAlt} className="frm-input frm-large-icon"/>
               <input
                 type="date"
                 id="fechaInicio"
                 name="fechaInicio"
                 value={fechaInicio}
                 onChange={handleFechaInicioChange}
+                aria-hidden="true"
               />
             </div>
-            <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <div className="input-with-icon">
+              <FontAwesomeIcon icon={faCalendarAlt} className="frm-input frm-large-icon"/>
               <input
                 type="date"
                 id="fechaFin"
                 name="fechaFin"
                 value={fechaFin}
                 onChange={handleFechaFinChange}
+                aria-hidden="true"
               />
             </div>
           </div>
