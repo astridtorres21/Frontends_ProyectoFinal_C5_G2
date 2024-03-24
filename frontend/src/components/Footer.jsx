@@ -9,15 +9,23 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="left-content">
-        <img src="images/footer/nota_dorada.png" alt="Isologotipo de la empresa" className="logo_nota" />
-        <img src="images/footer/logo_blanco.png" alt="Isologotipo de la empresa" className="logo_blanco" />
-        <span className="copyright">&copy; {year}</span>
+        <img src="images/logo.png" alt="logo" />
+        <div className='copy'>
+        <span className="copyright">&copy; Doremi {year}. Todos los derechos reservados</span>
+        </div>
       </div>
       <div className='right-content'>
+        <div className='social-medias-title'>
+          <h4>Seguinos en nuestras redes sociales</h4>
+        </div>
+        <div className='social-medias'>
+        <img src="images/footer/facebook.png" alt="Facebook" />
         <img src="images/footer/instagram.png" alt="Instagram" />
-        <img src="images/footer/linkedin.png" alt="Linkedin" />
+        <img src="images/footer/X.png" alt="X" />
         <img src="images/footer/tiktok.png" alt="TikTok" />
-      </div>
+        </div>
+
+        </div>
     </footer>
   );
 };

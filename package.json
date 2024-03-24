@@ -1,11 +1,5 @@
 {
-  "name": "proyectofinal_c5_g2",
-  "version": "1.0.0",
-  "description": "Aqui vas a encontrar nuestro proyecto final del equipo G2 de certified tech developer en Digital House.",
-  "main": "index.js",
-  "scripts": {
-    "test": "exit 0"
-  },
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "react-router-dom": "^6.22.3"
+  }
 }
