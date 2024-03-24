@@ -7,6 +7,7 @@ const Admin = () => {
     <div>
       <h2>Administración</h2>
       {/* Interfaz de administración */}
+      <h3>Prueba para ver si se creo la rama</h3>
     </div>
   );
 }
