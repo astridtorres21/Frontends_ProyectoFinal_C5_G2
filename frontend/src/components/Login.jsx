@@ -15,7 +15,7 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch('/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -76,6 +76,7 @@ function Login() {
 }
 
 export default Login;
+
 
 
 

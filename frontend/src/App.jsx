@@ -18,7 +18,6 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <Header/>
       <div className='content-section'>
         <Routes>
           <Route path="/" element={<Body/>} />
@@ -28,7 +27,6 @@ function App() {
           <Route path="/confirm-reservation" element={<ReservationConfirmation/>} />
         </Routes>
       </div>
-      <Footer/>
     </Router>
   );
 }
