@@ -8,9 +8,10 @@ function Search({ onSearch }) {
   const [fechaFin, setFechaFin] = useState(new Date());
   const [search, setSearch] = useState("");
   const [productos, setProductos] = useState([]);
+  const suggestions = ['Guitarra', 'Batería', 'Piano', 'Violín'];
 
   const bgSearch = {
-    backgroundImage: 'url(images/bg-search.jpg)',
+    backgroundImage: 'url(images/bg-search.png)',
     backgroundSize: 'cover',
     backgroundPosition: 'center', 
   };
@@ -32,7 +33,7 @@ function Search({ onSearch }) {
     try {
       const response = await fetch(`/instrumentos/buscarPorKeyWord/${search}`);
       if (!response.ok) {
-        alert(`No se econtrarón productos con el nombre ${search}`)
+        alert(`No se encontraron productos con el nombre ${search}`)
         setProductos({});
         onSearch(data);
         throw new Error('Error al buscar productos');
@@ -63,7 +64,13 @@ function Search({ onSearch }) {
                 value={search}
                 onChange={handleSearch}
                 placeholder="Guitarra, Batería, Piano..."
-              />            
+                list="suggestions"
+              />
+              <datalist id="suggestions">
+                {suggestions.map((suggestion, index) => (
+                  <option key={index} value={suggestion} />
+                ))}
+              </datalist>
             </div>
           </div>
           <div className="search-section-date">
