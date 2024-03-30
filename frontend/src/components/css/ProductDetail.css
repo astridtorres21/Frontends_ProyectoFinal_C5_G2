@@ -44,10 +44,13 @@
 }
 
 .product-details {
-  flex: 1;
+  flex: 0.5;
   padding: 20px;
   background-color: #e4a951;
   color: #000000;
+  border-radius: 10px; /* Añadido: Borde redondeado */
+  margin-left: 20px; /* Añadido: Separación entre imágenes y detalles */
+
 }
 
 .product-image {
@@ -70,10 +73,11 @@ p {
 .product-container {
   display: flex;
   margin-bottom: 20px;
+  margin-right: 20px;
 }
 
 .main-image {
-  width: 400px; 
+  width: 100%; 
   height: auto;
   margin-bottom: 10px;
   aspect-ratio: 3/2;
@@ -96,6 +100,18 @@ p {
 
 .product-thumbnail.selected {
   border: 2px solid #E4A951; 
+  border-radius: 10px;
+}
+
+.product-details {
+  position: relative;
+}
+
+.product-details span {
+  position: absolute; 
+  top: 0; 
+  right: 0;
+  transform: translate(-30%, 30%); 
 }
 
 /* Estilos adicionales para hacerlo más responsive */

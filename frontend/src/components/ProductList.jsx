@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../components/css/ProductList.css';
 
 const ProductList = ({ productos }) => {
   return (
@@ -11,12 +12,13 @@ const ProductList = ({ productos }) => {
             <div className="products-card" key={producto.instrumento_id}>
               <Link to={`/product/${producto.instrumento_id}`}>
                 <section className='picture-product'>
-                  <img src={producto.imagen[0].url} alt={producto.nombre} />
+                  <img src={producto.imagen[0].url} alt={producto.nombre} className={`product-img`}/>
                 </section>
               </Link>
               <h3>{producto.nombre}</h3>
               <p>{producto.descripcion}</p>
-            </div>
+              <p className="price" style={{ color: '#ffc107' }}>Precio por día: ${producto.precioDia.toFixed(2)}</p> {/* Mostrar el precio por día */}
+           </div>
           ))}
         </div>
       ) : (

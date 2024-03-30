@@ -1,10 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Avatar from 'react-avatar'; 
+
 import { useAuth } from '../AuthContext';
 import './css/Header.css';
 
 const Header = () => {
   const { isLogged, logout } = useAuth();
+  const [userName, setUserName] = useState('');
+
+  const getUserName = () => {
+    return userName || ''; 
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userId = localStorage.getItem('userId');
+        const token = localStorage.getItem('token');
+
+        const userResponse = await fetch(`/usuario/buscarPorId/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}` 
+          }
+        });
+
+        const userData = await userResponse.json();
+        setUserName(`${userData.nombre} ${userData.apellido}`);
+      } catch (error) {
+        console.error('Error al obtener los datos del usuario:', error);
+      }
+    };
+
+    if (isLogged) {
+      fetchUserData();
+    }
+  }, [isLogged]);
+
+  const handleProfileClick = () => {
+    // Redirige a la página de perfil
+    window.location.href = '/perfil';
+  };
 
   return (
     <header className="header">
@@ -19,7 +55,11 @@ const Header = () => {
       </div>
       <div className="buttons-container">
         {isLogged ? (
-          <button onClick={logout}>Cerrar sesión</button>
+          <>
+            <span>Bienvenida {getUserName()}</span>
+            <Avatar style={{ cursor: 'pointer' }} onClick={handleProfileClick}  name={getUserName()} size="40" round={true} className='avatar' />
+            <button onClick={logout}>Cerrar sesión</button>
+          </>
         ) : (
           <>
             <Link to="/login">

@@ -80,8 +80,12 @@ const Body = () => {
     <Search onSearch={handleSearch}/>
     { !productosBuscados.length > 0 ? (
       <>
-        <Category categorias={categorias} />
+        <div>
+          <Category categorias={categorias} />
+        </div>
+        <div>
         <Product productos={productos} />
+        </div>
       </>
     ) : (
       <>
