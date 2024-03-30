@@ -8,7 +8,7 @@ function Search({ onSearch }) {
   const [fechaFin, setFechaFin] = useState(new Date());
   const [search, setSearch] = useState("");
   const [productos, setProductos] = useState([]);
-  const suggestions = ['Guitarra', 'Batería', 'Piano', 'Violín'];
+  const suggestions = ['Guitarra Acústica', 'Violín', 'Viola', 'Contrabajo', 'Banjo','Bajo Eléctrico','Arpa','Mandolina','Charango','Cuerda Guitarra','Flauta Travesera','Saxofón Alto','Trompeta','Clarinete','Trombón','Oboe','Flauta Dulce','Fagot','Trompa','Batería Completa','Congas','Timbales','Cajón Peruano','Pandereta','Marimba','Bombo Legüero','Steel Drum','Tabla','Piano Digital','Órgano Eléctrico','Sintetizador','Acordeón', 'Clavicordio', 'Melódica', 'Celesta', 'Órgano de Tubos', 'Sintetizador Analógico', 'Sampler', 'Sintetizador Modular', 'Caja de Ritmos', 'Controlador MIDI', 'Theremin', 'Secuenciador', 'Drum Machine', 'Controlador de DJ', 'Didgeridoo', 'Hang Drum', 'Koto', 'Sitar', 'Bagpipes'];
 
   const bgSearch = {
     backgroundImage: 'url(images/bg-search.png)',
@@ -17,7 +17,14 @@ function Search({ onSearch }) {
   };
 
   const handleFechaInicioChange = (e) => {
-    setFechaInicio(e.target.value);
+    const selectedDate = new Date(e.target.value);
+    const today = new Date();
+    if (selectedDate < today) {
+      e.target.classList.add("past-date");
+    } else {
+      e.target.classList.remove("past-date");
+    }
+    setFechaInicio(selectedDate);
   };
 
   const handleFechaFinChange = (e) => {
@@ -80,7 +87,7 @@ function Search({ onSearch }) {
                 type="date"
                 id="fechaInicio"
                 name="fechaInicio"
-                value={fechaInicio}
+                value={fechaInicio.toISOString().split('T')[0]} // Format the date to ISO string
                 onChange={handleFechaInicioChange}
                 aria-hidden="true"
               />
@@ -111,3 +118,5 @@ function Search({ onSearch }) {
 }
 
 export default Search;
+
+
