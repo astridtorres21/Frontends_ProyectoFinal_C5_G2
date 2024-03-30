@@ -14,7 +14,7 @@ const MaybeShowHeaderAndFooter = ({ children }) => {
 
   return (
     <>
-      {shouldShowHeaderAndFooter && <Header />}
+      {<Header />}
       {children}
       {shouldShowHeaderAndFooter && <Footer />}
       
