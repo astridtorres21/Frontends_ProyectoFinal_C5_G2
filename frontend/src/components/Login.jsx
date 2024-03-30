@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Importa Link de react-router-dom
 import './css/Login.css';
 
 function Login() {
@@ -36,7 +37,10 @@ function Login() {
   return (
     <div className="container">
       <div className="left-section">
-        <img className='logo-section' src="images/logonuevo.png" alt="Logo" />
+        {/* Agrega un Link al logo para redirigir a otra página */}
+        <Link to="/">
+          <img className='logo-section' src="images/logonuevo.png" alt="Logo" />
+        </Link>
         <h2 className='title-left'>Tu armonía, 
         nuestra pasión</h2>
       </div>
@@ -69,6 +73,7 @@ function Login() {
           </div>
           <p><a href="#">¿Olvidaste tu contraseña?</a></p>
           <button type="submit">Iniciar sesión</button>
+          <p className='account'>¿No tienes cuenta? <a href="/register">Crear Cuenta</a></p>
         </form>
       </div>
     </div>
@@ -76,6 +81,7 @@ function Login() {
 }
 
 export default Login;
+
 
 
 

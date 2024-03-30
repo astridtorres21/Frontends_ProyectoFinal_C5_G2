@@ -1,5 +1,6 @@
 import React from 'react';
-import Avatar from 'react-avatar'; // Importa el componente Avatar de react-avatar
+import Avatar from 'react-avatar';
+import { Link } from 'react-router-dom'; // Importa Link de react-router-dom
 import './css/NewHeader.css';
 
 function NewHeader() {
@@ -16,6 +17,7 @@ function NewHeader() {
       window.location.href = '/'; // Redirige al usuario a otra página después de cerrar sesión
     }
   };
+
   const handleProfileClick = () => {
     // Redirige a la página de perfil
     window.location.href = '/perfil';
@@ -24,7 +26,10 @@ function NewHeader() {
   return (
     <header>
       <div className="logo">
-        <img src="images/logo.png" alt="logo" />
+        {/* Agrega un Link al logo para redirigir a otra página */}
+        <Link to="/homeuser">
+          <img src="images/logo.png" alt="logo" />
+        </Link>
       </div>
       <div className="user-info">
         {/* Mostramos el nombre del usuario */}
