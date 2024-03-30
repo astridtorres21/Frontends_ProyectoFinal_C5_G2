@@ -8,15 +8,23 @@ function Search({ onSearch }) {
   const [fechaFin, setFechaFin] = useState(new Date());
   const [search, setSearch] = useState("");
   const [productos, setProductos] = useState([]);
+  const suggestions = ['Guitarra Acústica', 'Violín', 'Viola', 'Contrabajo', 'Banjo','Bajo Eléctrico','Arpa','Mandolina','Charango','Cuerda Guitarra','Flauta Travesera','Saxofón Alto','Trompeta','Clarinete','Trombón','Oboe','Flauta Dulce','Fagot','Trompa','Batería Completa','Congas','Timbales','Cajón Peruano','Pandereta','Marimba','Bombo Legüero','Steel Drum','Tabla','Piano Digital','Órgano Eléctrico','Sintetizador','Acordeón', 'Clavicordio', 'Melódica', 'Celesta', 'Órgano de Tubos', 'Sintetizador Analógico', 'Sampler', 'Sintetizador Modular', 'Caja de Ritmos', 'Controlador MIDI', 'Theremin', 'Secuenciador', 'Drum Machine', 'Controlador de DJ', 'Didgeridoo', 'Hang Drum', 'Koto', 'Sitar', 'Bagpipes'];
 
   const bgSearch = {
-    backgroundImage: 'url(images/bg-search.jpg)',
+    backgroundImage: 'url(images/bg-search.png)',
     backgroundSize: 'cover',
     backgroundPosition: 'center', 
   };
 
   const handleFechaInicioChange = (e) => {
-    setFechaInicio(e.target.value);
+    const selectedDate = new Date(e.target.value);
+    const today = new Date();
+    if (selectedDate < today) {
+      e.target.classList.add("past-date");
+    } else {
+      e.target.classList.remove("past-date");
+    }
+    setFechaInicio(selectedDate);
   };
 
   const handleFechaFinChange = (e) => {
@@ -32,7 +40,7 @@ function Search({ onSearch }) {
     try {
       const response = await fetch(`/instrumentos/buscarPorKeyWord/${search}`);
       if (!response.ok) {
-        alert(`No se econtrarón productos con el nombre ${search}`)
+        alert(`No se encontraron productos con el nombre ${search}`)
         setProductos({});
         onSearch(data);
         throw new Error('Error al buscar productos');
@@ -63,7 +71,13 @@ function Search({ onSearch }) {
                 value={search}
                 onChange={handleSearch}
                 placeholder="Guitarra, Batería, Piano..."
-              />            
+                list="suggestions"
+              />
+              <datalist id="suggestions">
+                {suggestions.map((suggestion, index) => (
+                  <option key={index} value={suggestion} />
+                ))}
+              </datalist>
             </div>
           </div>
           <div className="search-section-date">
@@ -73,7 +87,7 @@ function Search({ onSearch }) {
                 type="date"
                 id="fechaInicio"
                 name="fechaInicio"
-                value={fechaInicio}
+                value={fechaInicio.toISOString().split('T')[0]} // Format the date to ISO string
                 onChange={handleFechaInicioChange}
                 aria-hidden="true"
               />
@@ -104,3 +118,5 @@ function Search({ onSearch }) {
 }
 
 export default Search;
+
+

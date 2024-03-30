@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+import Header from './Header';
 import Search from './Search';
 import Category from './Category';
 import Product from './ProductList';
-
+import Footer from './Footer';
 import './css/Body.css';
 
 const Body = () => {
