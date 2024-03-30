@@ -6,16 +6,12 @@ import ProductDetail from './components/ProductDetail';
 import ReservationConfirmation from './components/ReservationConfirmation';
 import Body from './components/Body';
 import Login from './components/Login';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <MaybeShowHeaderAndFooter>
-      <Header />
-      </MaybeShowHeaderAndFooter>
         <Routes>
           <Route path="/" element={<Body />} />
           <Route exact path="/register" element={<Register />} />
@@ -23,9 +19,7 @@ function App() {
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/confirm-reservation" element={<ReservationConfirmation />} />
         </Routes>
-        <MaybeShowHeaderAndFooter>
-        <Footer />
-        </MaybeShowHeaderAndFooter>
+      </MaybeShowHeaderAndFooter>
     </Router>
   );
 }
