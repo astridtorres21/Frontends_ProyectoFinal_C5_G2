@@ -1,38 +1,30 @@
 import React from 'react';
-import { 
-    BrowserRouter as Router
-    , Route 
-    , Routes
-} from 'react-router-dom';
-import NewHeader from './components/NewHeader';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import MaybeShowHeaderAndFooter from './components/MaybeShowHeaderAndFooter';
 import Register from './components/Register';
-import Search from './components/Search';
 import ProductDetail from './components/ProductDetail';
-import Home from './components/Home';
 import ReservationConfirmation from './components/ReservationConfirmation';
-import Admin from './components/Admin';
-import Header from './components/Header';
 import Body from './components/Body';
-import Footer from './components/Footer';
 import Login from './components/Login';
-
+import HomeUser from './components/HomeUser';
+import './App.css';
 
 function App() {
   return (
     <Router>
-      <Header/>
-      <Search/>
-      <Body/>
-      <Footer/>      
+       <MaybeShowHeaderAndFooter>
         <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/register" element={<Register/>} />
-        <Route path="/product/:id" element={<ProductDetail/>} />
-        <Route path="/confirm-reservation" element={<ReservationConfirmation/>} />
-        <Route path="/admin" element={<Admin/>} />
-      </Routes>
+          <Route path="/" element={<Body />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/confirm-reservation" element={<ReservationConfirmation />} />
+          <Route path="/homeuser" element={<HomeUser />} />
+        </Routes>
+      </MaybeShowHeaderAndFooter>
     </Router>
   );
 }
 
 export default App;
+

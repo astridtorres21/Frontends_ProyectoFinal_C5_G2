@@ -9,8 +9,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="left-content">
-        <img src="images/footer/nota_dorada.png" alt="Isologotipo de la empresa" className="logo_nota" />
-        <img src="images/footer/logo_blanco.png" alt="Isologotipo de la empresa" className="logo_blanco" />
+        <img src="images/logo.png" alt="logo" />
         <div className='copy'>
         <span className="copyright">&copy; Doremi {year}. Todos los derechos reservados</span>
         </div>
