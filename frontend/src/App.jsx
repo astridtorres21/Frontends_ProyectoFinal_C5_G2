@@ -7,11 +7,14 @@ import ReservationConfirmation from './components/ReservationConfirmation';
 import Body from './components/Body';
 import Login from './components/Login';
 import HomeUser from './components/HomeUser';
+import { AuthProvider } from './AuthContext';
+
 import './App.css';
 
 function App() {
   return (
     <Router>
+      <AuthProvider>
        <MaybeShowHeaderAndFooter>
         <Routes>
           <Route path="/" element={<Body />} />
@@ -22,6 +25,7 @@ function App() {
           <Route path="/homeuser" element={<HomeUser />} />
         </Routes>
       </MaybeShowHeaderAndFooter>
+      </AuthProvider>
     </Router>
   );
 }

@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
+
 import './css/Login.css';
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const handleUserNameChange = (event) => {
+    setUserName(event.target.value);
   };
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -20,18 +25,23 @@ function Login() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ username, password })
       });
-
+  
       if (response.ok) {
+        login();
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
         console.log('Inicio de sesión exitoso');
+        navigate('/');        
       } else {
-        console.error('Error en el inicio de sesión:', response.statusText);
+        // Si la respuesta no es exitosa, lanzamos un error para que sea manejado en el bloque catch
+        throw new Error(`Error en el inicio de sesión: ${response.statusText}`);
       }
     } catch (error) {
       console.error('Error al enviar datos al servidor:', error);
     }
-  };
+  }; 
 
   return (
     <div className="container">
@@ -44,14 +54,14 @@ function Login() {
         <form className='form-login' onSubmit={handleSubmit}>
         <h3>Iniciar sesión</h3>
           <div className="input-group">
-            <label htmlFor="email"></label>
+            <label htmlFor="username"></label>
             <input
               type="email"
-              id="email"
-              name="email"
+              id="username"
+              name="username"
               placeholder="Correo electrónico"
-              value={email}
-              onChange={handleEmailChange}
+              value={username}
+              onChange={handleUserNameChange}
               required
             />
           </div>
