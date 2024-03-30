@@ -5,6 +5,7 @@ import './css/Login.css';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -25,7 +26,17 @@ function Login() {
       });
 
       if (response.ok) {
-        console.log('Inicio de sesión exitoso');
+        const userData = await response.json();
+        // Verificar si el usuario es ADMIN o USER
+        if (userData.role === 'ADMIN') {
+          // Redirigir a la página de administrador
+          window.location.href = '/admin';
+        } else if (userData.role === 'USER') {
+          // Redirigir a la página de usuario
+          window.location.href = '/HomeUser';
+        } else {
+          console.error('Rol de usuario desconocido');
+        }
       } else {
         console.error('Error en el inicio de sesión:', response.statusText);
       }
@@ -41,31 +52,28 @@ function Login() {
         <Link to="/">
           <img className='logo-section' src="images/logonuevo.png" alt="Logo" />
         </Link>
-        <h2 className='title-left'>Tu armonía, 
-        nuestra pasión</h2>
+        <h2 className='title-left'>Tu armonía, nuestra pasión</h2>
       </div>
       <div className="right-section">
         <form className='form-login' onSubmit={handleSubmit}>
-        <h3>Iniciar sesión</h3>
+          <h3>Iniciar sesión</h3>
           <div className="input-group">
-            <label htmlFor="email"></label>
+            <label htmlFor="email">Correo electrónico</label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="Correo electrónico"
               value={email}
               onChange={handleEmailChange}
               required
             />
           </div>
           <div className="input-group">
-            <label htmlFor="password"></label>
+            <label htmlFor="password">Contraseña</label>
             <input
               type="password"
               id="password"
               name="password"
-              placeholder="Contraseña"
               value={password}
               onChange={handlePasswordChange}
               required
@@ -73,7 +81,7 @@ function Login() {
           </div>
           <p><a href="#">¿Olvidaste tu contraseña?</a></p>
           <button type="submit">Iniciar sesión</button>
-          <p className='account'>¿No tienes cuenta? <a href="/register">Crear Cuenta</a></p>
+          <p className='account'>¿No tienes cuenta? <Link to="/register">Crear Cuenta</Link></p>
         </form>
       </div>
     </div>
@@ -81,7 +89,6 @@ function Login() {
 }
 
 export default Login;
-
 
 
 
