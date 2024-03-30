@@ -39,7 +39,7 @@ function Login() {
           navigate('/admin');
         } else if (data.role === 'USER') {
           // Redirigir al panel de usuario
-          navigate('/user');
+          navigate('/homeuser');
         }
       } else {
         // Si la respuesta no es exitosa, lanzamos un error para que sea manejado en el bloque catch
