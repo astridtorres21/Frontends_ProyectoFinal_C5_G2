@@ -3,12 +3,16 @@ import { useParams } from 'react-router-dom';
 import products from '../components/product.json';
 import '../components/css/ProductDetail.css';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../AuthContext'; 
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const { isLogged } = useAuth();
+
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedThumbnail, setSelectedThumbnail] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const changeThumbnail = (index) => {
     setSelectedThumbnail(index);
@@ -23,6 +27,18 @@ const ProductDetail = () => {
     if (newIndex >= 0 && newIndex < selectedProduct.images.length) {
       setSelectedThumbnail(newIndex);
     }
+  };
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite); 
+
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || {};
+    if (isFavorite) {
+      delete favorites[id];
+    } else {
+      favorites[id] = selectedProduct;
+    }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
   };
 
   useEffect(() => {
@@ -69,6 +85,11 @@ const ProductDetail = () => {
     fetchData();
   }, [id]);
 
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || {};
+    setIsFavorite(!!favorites[id]);
+  }, [id]);
+
   if (loading) {
     return <div className="loading-container">Cargando...</div>;
   }
@@ -86,7 +107,7 @@ const ProductDetail = () => {
       {/* Primer bloque */}
       <div className="productDetail-header">
         <div className="productDetail-header-title-left">
-          <h1>{selectedProduct.nombre}</h1>
+          <h1>Categoría: {selectedProduct.categoria.nombre}</h1>
         </div>
         <div className="productDetail-header-right">
           <Link to="/">
@@ -94,7 +115,7 @@ const ProductDetail = () => {
           </Link>
         </div>
       </div>
-      <div className="container">
+      <div className="">
         <div className="product-container">
           <div className="product-images">
             <img
@@ -117,7 +138,53 @@ const ProductDetail = () => {
             </div>
           </div>
           <div className="product-details">
+            <h3>
+              {isLogged && ( // Solo muestra el botón de favoritos si el usuario está autenticado
+              <span onClick={toggleFavorite} style={{ cursor: 'pointer', position: 'absolute', top: '0', right: '0', margin: '8px' }}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill={isFavorite ? '#512DA8' : 'none'}
+                stroke={isFavorite ? '#512DA8' : '#000000'}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 21.943L12 21.943C5.91 16.373 2 12.82 2 9.155c0-3.309 2.91-5.983 6.5-5.983 2.637 0 4.638 1.767 5.5 3.5.862-1.733 2.863-3.5 5.5-3.5C19.09 3.172 22 5.846 22 9.155c0 3.665-3.91 7.218-9 12.788z"></path>
+              </svg>
+            </span>
+            
+              )}
+              <p
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: '30px',
+                  color: '#512DA8',
+                  right: '0',
+                  margin: '8px',
+                }}
+              >
+                  {selectedProduct.nombre}
+              </p>            
+            </h3>
             <p>{selectedProduct.descripcion}</p>
+            {selectedProduct.precioDia && ( 
+              <p
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: '20px',
+                  color: '#512DA8',
+                  position: 'absolute',
+                  bottom: '0',
+                  right: '0',
+                  margin: '8px',
+                }}
+              >
+                Precio por día: ${selectedProduct.precioDia}
+              </p>
+            )}            
           </div>
         </div>
       </div>

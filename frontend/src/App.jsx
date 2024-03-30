@@ -15,16 +15,18 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-       <MaybeShowHeaderAndFooter>
-        <Routes>
-          <Route path="/" element={<Body />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/confirm-reservation" element={<ReservationConfirmation />} />
-          <Route path="/homeuser" element={<HomeUser />} />
-        </Routes>
-      </MaybeShowHeaderAndFooter>
+        <MaybeShowHeaderAndFooter>
+          <div className='content-section'>
+            <Routes>
+              <Route path="/" element={<Body />} />
+              <Route exact path="/register" element={<Register />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/confirm-reservation" element={<ReservationConfirmation />} />
+              <Route path="/homeuser" element={<HomeUser />} />
+            </Routes>
+          </div>
+        </MaybeShowHeaderAndFooter>
       </AuthProvider>
     </Router>
   );

@@ -7,11 +7,12 @@ import './css/Login.css';
 function Login() {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const handleUserNameChange = (event) => {
     setUserName(event.target.value);
   };
-  const navigate = useNavigate();
-  const { login } = useAuth();
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -32,10 +33,26 @@ function Login() {
         login();
         const data = await response.json();
         localStorage.setItem('token', data.token);
-        console.log('Inicio de sesión exitoso');
-        navigate('/');        
+
+        const userResponse = await fetch(`/usuario/buscarPorUsername/${username}`, {
+          headers: {
+            Authorization: `Bearer ${data.token}` 
+          }
+        });
+        const userData = await userResponse.json();
+        
+        if (userData.role === 'USER') {
+          console.log('Inicio de sesión exitoso como usuario');
+          localStorage.setItem('userId', userData.usuario_id);
+          login();
+          navigate('/');
+        } else if (userData.role === 'ADMIN') {
+          console.log('Inicio de sesión exitoso como administrador');
+          localStorage.setItem('userId', userData.usuario_id);
+          login();
+          navigate('/admin');
+        }
       } else {
-        // Si la respuesta no es exitosa, lanzamos un error para que sea manejado en el bloque catch
         throw new Error(`Error en el inicio de sesión: ${response.statusText}`);
       }
     } catch (error) {
