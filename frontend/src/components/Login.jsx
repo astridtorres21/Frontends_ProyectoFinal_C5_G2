@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Importa Link de react-router-dom
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
+
 import './css/Login.css';
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const handleUserNameChange = (event) => {
+    setUserName(event.target.value);
   };
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -22,33 +25,35 @@ function Login() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ username, password })
       });
-
+  
       if (response.ok) {
-        const userData = await response.json();
-        // Verificar si el usuario es ADMIN o USER
-        if (userData.role === 'ADMIN') {
-          // Redirigir a la página de administrador
-          window.location.href = '/admin';
-        } else if (userData.role === 'USER') {
-          // Redirigir a la página de usuario
-          window.location.href = '/HomeUser';
-        } else {
-          console.error('Rol de usuario desconocido');
+        const data = await response.json();
+        login();
+        localStorage.setItem('token', data.token);
+        console.log('Inicio de sesión exitoso');
+        // Verificar el rol del usuario
+        if (data.role === 'ADMIN') {
+          // Redirigir al panel de administrador
+          navigate('/admin');
+        } else if (data.role === 'USER') {
+          // Redirigir al panel de usuario
+          navigate('/user');
         }
       } else {
-        console.error('Error en el inicio de sesión:', response.statusText);
+        // Si la respuesta no es exitosa, lanzamos un error para que sea manejado en el bloque catch
+        throw new Error(`Error en el inicio de sesión: ${response.statusText}`);
       }
     } catch (error) {
       console.error('Error al enviar datos al servidor:', error);
     }
-  };
+  }; 
 
   return (
     <div className="container">
       <div className="left-section">
-        {/* Agrega un Link al logo para redirigir a otra página */}
+        {/* Agregar enlace al logo */}
         <Link to="/">
           <img className='logo-section' src="images/logonuevo.png" alt="Logo" />
         </Link>
@@ -56,24 +61,26 @@ function Login() {
       </div>
       <div className="right-section">
         <form className='form-login' onSubmit={handleSubmit}>
-          <h3>Iniciar sesión</h3>
+        <h3>Iniciar sesión</h3>
           <div className="input-group">
-            <label htmlFor="email">Correo electrónico</label>
+            <label htmlFor="username"></label>
             <input
               type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={handleEmailChange}
+              id="username"
+              name="username"
+              placeholder="Correo electrónico"
+              value={username}
+              onChange={handleUserNameChange}
               required
             />
           </div>
           <div className="input-group">
-            <label htmlFor="password">Contraseña</label>
+            <label htmlFor="password"></label>
             <input
               type="password"
               id="password"
               name="password"
+              placeholder="Contraseña"
               value={password}
               onChange={handlePasswordChange}
               required
@@ -81,7 +88,8 @@ function Login() {
           </div>
           <p><a href="#">¿Olvidaste tu contraseña?</a></p>
           <button type="submit">Iniciar sesión</button>
-          <p className='account'>¿No tienes cuenta? <Link to="/register">Crear Cuenta</Link></p>
+          <p className='register'>¿No tienes cuenta? <a href="/register">Crear Cuenta</a></p>
+          
         </form>
       </div>
     </div>
@@ -89,6 +97,7 @@ function Login() {
 }
 
 export default Login;
+
 
 
 
