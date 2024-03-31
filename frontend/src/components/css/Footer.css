@@ -47,3 +47,10 @@
     margin-top: 5px;
   }
   
+
+  @media (max-width: 600px) {
+.footer{
+  width: 660px;
+}
+  }
+  

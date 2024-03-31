@@ -134,3 +134,20 @@ input[type="date"]::-webkit-inner-spin-button,
 .past-date {
   text-decoration: line-through;
 }
+
+
+@media (max-width: 600px) {
+
+  .h1{
+    font-size: 40px;
+    max-width: 400px;
+    padding-left: 70px;
+  }
+.search{
+  width: 695px;
+}
+
+    
+  }
+
+
