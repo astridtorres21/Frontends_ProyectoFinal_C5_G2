@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
+
 import './css/Register.css';
 
 const Register = () => {
   
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
+    nombre: '',
+    apellido: '',
+    username: '',
     password: ''
   });
+
+  const { login } = useAuth();
 
 
   const [confirmationMessage, setConfirmationMessage] = useState('');
@@ -30,14 +36,14 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!validateEmail(formData.email)) {
+    console.log('formData-->', formData);
+    if (!validateEmail(formData.username)) {
       setConfirmationMessage('El correo electrónico no tiene un formato válido');
       return;
     }
 
     try {
-      const response = await fetch('/api/register', {
+      const response = await fetch('/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -46,6 +52,30 @@ const Register = () => {
       });
       if (response.ok) {
         setConfirmationMessage('Registro exitoso');
+        login();
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+
+        const userResponse = await fetch(`/usuario/buscarPorUsername/${formData.username}`, {
+          headers: {
+            Authorization: `Bearer ${data.token}` 
+          }
+        });
+        const userData = await userResponse.json();
+        
+        if (userData.role === 'USER') {
+          console.log('Inicio de sesión exitoso como usuario');
+          localStorage.setItem('userId', userData.usuario_id);
+          login();
+          navigate('/');
+        } else if (userData.role === 'ADMIN') {
+          console.log('Inicio de sesión exitoso como administrador');
+          localStorage.setItem('userId', userData.usuario_id);
+          login();
+          navigate('/admin');
+        }
+
+        navigate('/');
       } else {
         setConfirmationMessage('Error en el registro');
       }
@@ -65,36 +95,36 @@ const Register = () => {
         <form className='register-form' onSubmit={handleSubmit}>
           <h3> <strong>Registrarse</strong></h3>
           <div className='input-form'>
-            <label className='input' htmlFor="firstName"></label>
+            <label className='input' htmlFor="nombre"></label>
             <input
               type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
+              id="nombre"
+              name="nombre"
+              value={formData.nombre}
               onChange={handleInputChange}
               placeholder="Nombre"
               required
             />
           </div>
           <div className='input-form'>
-            <label className='input' htmlFor="lastName"></label>
+            <label className='input' htmlFor="apellido"></label>
             <input
               type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
+              id="apellido"
+              name="apellido"
+              value={formData.apellido}
               onChange={handleInputChange}
               placeholder="Apellido"
               required
             />
           </div>
           <div className='input-form'>
-            <label className='input' htmlFor="email"></label>
+            <label className='input' htmlFor="username"></label>
             <input
               type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              id="username"
+              name="username"
+              value={formData.username}
               onChange={handleInputChange}
               placeholder="Correo electrónico"
               required
@@ -122,5 +152,3 @@ const Register = () => {
 };
 
 export default Register;
-
-
