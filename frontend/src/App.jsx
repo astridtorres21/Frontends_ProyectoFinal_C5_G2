@@ -7,6 +7,7 @@ import ReservationConfirmation from './components/ReservationConfirmation';
 import Body from './components/Body';
 import Login from './components/Login';
 import HomeUser from './components/HomeUser';
+import Profile from './components/Profile';
 import { AuthProvider } from './AuthContext';
 
 import './App.css';
@@ -24,6 +25,7 @@ function App() {
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/confirm-reservation" element={<ReservationConfirmation />} />
               <Route path="/homeuser" element={<HomeUser />} />
+              <Route path="/perfil" element={<Profile />} />
             </Routes>
           </div>
         </MaybeShowHeaderAndFooter>
