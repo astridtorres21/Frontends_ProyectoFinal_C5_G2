@@ -9,10 +9,14 @@ import Login from './components/Login';
 import HomeUser from './components/HomeUser';
 import { AuthProvider } from './AuthContext';
 
+
+
 import './App.css';
 
 function App() {
   return (
+
+    
     <Router>
       <AuthProvider>
         <MaybeShowHeaderAndFooter>
