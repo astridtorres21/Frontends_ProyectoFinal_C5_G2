@@ -61,3 +61,31 @@
     text-align: justify;
     line-height: 1.3;
 }
+
+
+@media (max-width: 600px) {
+
+    .categories-section {
+        width: 695px;
+    }
+
+    .title-categorias{
+    display: flex;
+        
+    }
+
+    .products-section {
+        display: inline-block;
+    }
+    .title-products {
+        font-size: 80px;
+        margin-top: 180px;
+        margin-left: 130px;
+    }
+
+    }
+
+
+
+
+

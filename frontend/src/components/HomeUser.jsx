@@ -1,7 +1,7 @@
 import React from 'react';
 import Body from './Body';
 import Footer from './Footer';
-import NewHeader from './NewHeader';
+import Header from './Header';
 import './css/Body.css';
 import './css/Footer.css';
 import './css/NewHeader.css';
@@ -9,7 +9,7 @@ import './css/NewHeader.css';
 function HomeUser () {
   return (
     <div>
-      <NewHeader />
+      <Header />
       <Body />
       <Footer />
     </div>
