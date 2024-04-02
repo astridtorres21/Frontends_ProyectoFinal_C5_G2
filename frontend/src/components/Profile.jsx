@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Footer from './Footer';
 import Avatar from 'react-avatar';
 import './css/Profile.css';
+import './css/Footer.css';
 
 function Profile() {
   const [profileData, setProfileData] = useState(null);
@@ -9,15 +11,14 @@ function Profile() {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await fetch(`/usuario/buscarPorUsername/${username}`); // Corrección en el template literal
+        const response = await fetch(`/usuario/buscarPorUsername/${username}`);
         if (!response.ok) {
-          throw new Error(`Error al obtener los datos del perfil: ${response.statusText}`); // Corrección de la cadena de error
+          throw new Error(`Error al obtener los datos del perfil: ${response.statusText}`);
         }
         const data = await response.json();
         setProfileData(data);
       } catch (error) {
         console.error('Error al obtener los datos del perfil:', error);
-        console.log('Código de estado HTTP:', error.response?.status);
       }
     };
 
@@ -36,7 +37,6 @@ function Profile() {
       {profileData && ( 
         <div className="profile-info">
           <div className="avatar-container">
-            {/* Corrección en el uso de template literals */}
             <Avatar name={`${profileData.nombre} ${profileData.apellido}`} size="100" round={true} />
           </div>
           <div className="details-container">
@@ -47,8 +47,10 @@ function Profile() {
           </div>
         </div>
       )}
+      
     </div>
   );
 }
+<Footer />
 
 export default Profile;
