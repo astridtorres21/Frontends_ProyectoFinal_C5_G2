@@ -4,45 +4,46 @@ import './css/Profile.css';
 
 function Profile() {
   const [profileData, setProfileData] = useState(null);
+  const [username, setUsername] = useState('');
+
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await fetch('/api/profile');
+        const response = await fetch(`/usuario/buscarPorUsername/${username}`); // Corrección en el template literal
         if (!response.ok) {
-          throw new Error('Error al obtener los datos del perfil');
+          throw new Error(`Error al obtener los datos del perfil: ${response.statusText}`); // Corrección de la cadena de error
         }
         const data = await response.json();
         setProfileData(data);
       } catch (error) {
         console.error('Error al obtener los datos del perfil:', error);
+        console.log('Código de estado HTTP:', error.response?.status);
       }
     };
 
-    fetchProfileData();
-  }, []);
-
-  const handleChangePassword = () => {
-    console.log('Cambiando contraseña...');
-  };
+    if (username) {
+      fetchProfileData();
+    }
+  }, [username]);
 
   return (
     <div className="profile-container">
       <h2>Mi perfil</h2>
+      <form onSubmit={(e) => { e.preventDefault(); }}>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Ingrese su nombre de usuario" />
+        <button type="submit">Obtener perfil</button>
+      </form>
       {profileData && ( 
         <div className="profile-info">
-          {/* Avatar del usuario */}
           <div className="avatar-container">
-            <Avatar name={`${profileData.firstName} ${profileData.lastName}`} size="100" round={true} />
+            {/* Corrección en el uso de template literals */}
+            <Avatar name={`${profileData.nombre} ${profileData.apellido}`} size="100" round={true} />
           </div>
-          {/* Datos del perfil */}
           <div className="details-container">
-            <p><strong>Nombre:</strong> {profileData.firstName}</p>
-            <p><strong>Apellido:</strong> {profileData.lastName}</p>
-            <p><strong>Usuario:</strong> {profileData.username}</p>
-            {/* Contraseña encriptada */}
-            <p><strong>Contraseña:</strong> {profileData.encryptedPassword}</p>
-            {/* Botón para cambiar la contraseña */}
-            <button onClick={handleChangePassword}>Cambiar contraseña</button>
+            <p><strong>Nombre de Usuario:</strong> {profileData.username}</p>
+            <p><strong>Nombre:</strong> {profileData.nombre}</p>
+            <p><strong>Apellido:</strong> {profileData.apellido}</p>
+            <p><strong>Rol:</strong> {profileData.role}</p>
           </div>
         </div>
       )}
