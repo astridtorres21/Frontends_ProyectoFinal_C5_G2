@@ -39,7 +39,7 @@ const Header = () => {
 
   const handleProfileClick = () => {
     // Redirige a la página de perfil
-    window.location.href = '/perfil';
+    window.location.href = '/homeprofile';
   };
 
   return (
