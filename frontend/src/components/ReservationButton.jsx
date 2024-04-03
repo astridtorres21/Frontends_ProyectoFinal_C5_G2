@@ -8,10 +8,10 @@ const ReservaButton = () => {
   // Si no está autenticado, redirige al login
   const handleReservaClick = () => {
     if (isLogged) {
-      window.location.href = '/confirmationreservation' ;
+      window.location.href = '/ReservationDetail' ;
       console.log('Usuario autenticado, redirigiendo...');
     } else {
-       window.location.href = '/login';
+      window.location.href = '/login';
       console.log('Usuario no autenticado, redirigiendo al login...');
     }
   };
