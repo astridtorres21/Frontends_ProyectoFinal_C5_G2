@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext'; 
 import Calendario from './Calendario';
 import ReservationButton from './ReservationButton';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -15,20 +17,10 @@ const ProductDetail = () => {
   const [selectedThumbnail, setSelectedThumbnail] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [showCarousel, setShowCarousel] = useState(false);
 
   const changeThumbnail = (index) => {
     setSelectedThumbnail(index);
-  };
-
-  const navigateThumbnails = (direction) => {
-    const newIndex =
-      direction === 'up'
-        ? selectedThumbnail - 1
-        : selectedThumbnail + 1;
-
-    if (newIndex >= 0 && newIndex < selectedProduct.images.length) {
-      setSelectedThumbnail(newIndex);
-    }
   };
 
   const toggleFavorite = () => {
@@ -43,41 +35,30 @@ const ProductDetail = () => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   };
 
+  const handleCloseCarousel = () => {
+    setShowCarousel(false);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('/instrumentos/buscarPorId/' + parseInt(id));
         const data = await response.json();
 
-        // Fusionas los datos del backend con el JSON importado
         const productFromBackend = data;
         const productFromJSON = products.find((product) => product.instrumento_id === parseInt(id));
 
         if (productFromBackend && productFromJSON) {
-          // Combina las propiedades de ambos objetos
           const mergedProduct = {
             ...productFromBackend,
             imagen: productFromJSON.imagen,
           };
-          console.log('productFromJSON--->',productFromJSON.imagen);
-          console.log('productFromBackend--->',productFromBackend);
-          console.log('mergedProduct--->',mergedProduct);
-
           setSelectedProduct(mergedProduct);
         } else {
           setSelectedProduct(productFromBackend);
         }
 
-
         setLoading(false);
-
-/*
-
-        const response = await fetch(`http://localhost:8081/instrumentos/buscarPorId/${id}`);
-        const data = await response.json();
-
-        setSelectedProduct(data);
-        setLoading(false);        */
       } catch (error) {
         console.error('Error al obtener los datos del servidor:', error);
         setLoading(false);
@@ -100,13 +81,8 @@ const ProductDetail = () => {
     return <div className="error-container">Producto no encontrado</div>;
   }
 
-  if (!selectedProduct) {
-    return <div className="error-container">Producto no encontrado</div>;
-  }
-
   return (
     <>
-      {/* Primer bloque */}
       <div className="productDetail-header">
         <div className="productDetail-header-title-left">
           <h1>Categoría: {selectedProduct.categoria.nombre}</h1>
@@ -120,28 +96,26 @@ const ProductDetail = () => {
       <div className="">
         <div className="product-container">
           <div className="product-images">
-            <img
-              src={selectedProduct.imagen[selectedThumbnail].url}
-              alt={`Producto ${selectedProduct.id} Imagen principal`}
-              className="main-image"
+            <div className="image-wrapper">
+              <img
+                src={selectedProduct.imagen[selectedThumbnail].url}
+                alt={`Producto ${selectedProduct.id} Imagen principal`}
+                className="main-image"
               />
+              <button onClick={() => setShowCarousel(true)} className="ver-mas-button">Ver más</button>
+            </div>
             <div className="thumbnail-container">
-              {selectedProduct.imagen.map((image, index) => (
-                <img
-                  key={index}
-                  src={image.url}
-                  alt={`Producto ${selectedProduct.id} Imagen ${index + 1}`}
-                  className={`product-thumbnail ${
-                    index === selectedThumbnail ? 'selected' : ''
-                  }`}
-                  onClick={() => changeThumbnail(index)}
-                />
-              ))}
+              <img
+                key={selectedThumbnail}
+                src={selectedProduct.imagen[selectedThumbnail].url}
+                alt={`Producto ${selectedProduct.id} Imagen ${selectedThumbnail + 1}`}
+                className={`product-thumbnail selected`}
+              />
             </div>
           </div>
           <div className="product-details">
             <h3>
-              {isLogged && ( // Solo muestra el botón de favoritos si el usuario está autenticado
+              {isLogged && (
               <span onClick={toggleFavorite} style={{ cursor: 'pointer', position: 'absolute', top: '0', right: '0', margin: '8px' }}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -188,17 +162,42 @@ const ProductDetail = () => {
               </p>
             )} 
 
-
             <div className="boton-container">
-            <ReservationButton/>
+              <ReservationButton/>
             </div> 
-
           </div>
           <Calendario />
         </div>
       </div>
+      {showCarousel && (
+        <div className="carousel-overlay">
+          <div className="carousel-container">
+            <span className="carousel-close" onClick={handleCloseCarousel}>X</span>
+            <Carousel showArrows={true} showThumbs={false} selectedItem={selectedThumbnail}>
+              {selectedProduct.imagen.map((image, index) => (
+                <div key={index}>
+                  <img src={image.url} alt={`Producto ${selectedProduct.id} Imagen ${index + 1}`} />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+        </div>
+      )}
     </>
   );
 };
 
 export default ProductDetail;
+
+
+
+
+
+
+
+
+
+
+
+
+

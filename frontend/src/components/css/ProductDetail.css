@@ -147,3 +147,14 @@ p {
 .confirmar-btn:hover, .cancelar-btn:hover {
   background-color: #483d8b; /* Púrpura oscuro al hacer hover */
 }
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.ver-mas-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
