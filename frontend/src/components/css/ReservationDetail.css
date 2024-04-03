@@ -1,0 +1,47 @@
+.detalle-reserva-container {
+    width: 80%;
+    margin: auto;
+    
+  }
+  
+  .tarjeta {
+    background-color: #f9f9f9; /* Color de fondo de la tarjeta */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+  
+  .tarjeta h2 {
+    margin-bottom: 20px; /* Espaciado inferior */
+  }
+  
+  .producto-info, .cliente-info {
+    margin-bottom: 20px;
+  }
+  
+  .confirmar-btn, .cancelar-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .confirmar-btn {
+    background-color: #6a5acd; /* Púrpura */
+    color: #fff;
+    margin-right: 10px;
+  }
+  
+  .cancelar-btn {
+    background-color: #6a5acd; /* Púrpura */
+    color: #fff;
+  }
+  
+  .confirmar-btn:hover, .cancelar-btn:hover {
+    background-color: #483d8b; /* Púrpura oscuro al hacer hover */
+  }
+  
+  .texto-adicional {
+    margin-top: 20px;
+  }
+  

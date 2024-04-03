@@ -12,6 +12,9 @@ import Profile from './components/Profile';
 import { AuthProvider } from './AuthContext';
 import ReservationConfirmationPositive from './components/ReservationConfirmationPositive';
 import ReservationConfirmationNegative from './components/ReservationConfirmationNegative';
+import ReservationDetail from './components/ReservationDetail';
+
+
 
 
 
@@ -36,6 +39,7 @@ function App() {
               <Route path="/perfil" element={<Profile />} />
                 <Route path="/confirm-reservation-positive" element={<ReservationConfirmationPositive />} />
               <Route path="/confirm-reservation-negative" element={<ReservationConfirmationNegative />} />
+              <Route path="/ReservationDetail" element={<ReservationDetail/>} />
             </Routes>
           </div>
         </MaybeShowHeaderAndFooter>
