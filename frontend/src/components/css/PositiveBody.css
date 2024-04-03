@@ -22,3 +22,12 @@
     font-size: 18px;
     line-height: 1.5;
   }
+  .product-container {
+    position: relative;
+  }
+  
+  .ver-mas-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
