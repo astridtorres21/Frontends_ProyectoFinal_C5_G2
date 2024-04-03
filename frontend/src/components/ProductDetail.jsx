@@ -185,9 +185,13 @@ const ProductDetail = () => {
               >
                 Precio por día: ${selectedProduct.precioDia}
               </p>
-            )}  
+            )} 
 
-           
+
+            <div className="boton-container">
+<button className="confirmar-btn">Reservar</button>
+</div> 
+
           </div>
           <Calendario />
         </div>

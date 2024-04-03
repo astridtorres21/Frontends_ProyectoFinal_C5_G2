@@ -131,3 +131,13 @@ p {
     width: 100%;
   }
 }
+
+.confirmar-btn {
+  background-color: #6a5acd; /* Púrpura */
+  color: #fff;
+  margin-right: 10px;
+}
+
+.confirmar-btn:hover, .cancelar-btn:hover {
+  background-color: #483d8b; /* Púrpura oscuro al hacer hover */
+}
