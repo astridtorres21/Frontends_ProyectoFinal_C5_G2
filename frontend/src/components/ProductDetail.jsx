@@ -4,6 +4,8 @@ import products from '../components/product.json';
 import '../components/css/ProductDetail.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext'; 
+import Calendario from './Calendario';
+import ReservationButton from './ReservationButton';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -184,8 +186,15 @@ const ProductDetail = () => {
               >
                 Precio por día: ${selectedProduct.precioDia}
               </p>
-            )}            
+            )} 
+
+
+            <div className="boton-container">
+            <ReservationButton/>
+            </div> 
+
           </div>
+          <Calendario />
         </div>
       </div>
     </>
