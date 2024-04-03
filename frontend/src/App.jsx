@@ -8,6 +8,7 @@ import Body from './components/Body';
 import Login from './components/Login';
 import HomeUser from './components/HomeUser';
 import HomeProfile from './components/HomeProfile';
+import ReservationButton from './components/ReservationButton';
 import Profile from './components/Profile';
 import { AuthProvider } from './AuthContext';
 import ReservationConfirmationPositive from './components/ReservationConfirmationPositive';
@@ -28,6 +29,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Body />} />
               <Route exact path="/register" element={<Register />} />
+              <Route exact path="/button" element={<ReservationButton />} />
               <Route exact path="/login" element={<Login />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/confirm-reservation" element={<ReservationConfirmation />} />
