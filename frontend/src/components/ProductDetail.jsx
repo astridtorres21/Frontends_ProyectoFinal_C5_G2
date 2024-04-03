@@ -162,7 +162,7 @@ const ProductDetail = () => {
               <p
                 style={{
                   fontWeight: 'bold',
-                  fontSize: '30px',
+                  fontSize: '20px',
                   color: '#512DA8',
                   right: '0',
                   margin: '8px',
@@ -176,9 +176,9 @@ const ProductDetail = () => {
               <p
                 style={{
                   fontWeight: 'bold',
-                  fontSize: '20px',
+                  fontSize: '16px',
                   color: '#512DA8',
-                  position: 'absolute',
+                  position: 'center',
                   bottom: '0',
                   right: '0',
                   margin: '8px',
