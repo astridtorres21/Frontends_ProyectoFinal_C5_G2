@@ -89,4 +89,9 @@
   button:active {
     background-color: #45a049;
   }
+
+  .recordatorio{
+    color: #45a049;
+    font-size: 15px;
+  }
   
