@@ -5,7 +5,9 @@ import '../components/css/ProductDetail.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext'; 
 import Calendario from './Calendario';
-import ReservationButton from './ReservationButton';
+import Modal from './Modal'; 
+import ContenedorCalendario from './ContenedorCalendario'; 
+import ReservationButton from './ReservationButton'; 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -18,9 +20,21 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showCarousel, setShowCarousel] = useState(false);
+  const [showModal, setShowModal] = useState(false); 
 
   const changeThumbnail = (index) => {
     setSelectedThumbnail(index);
+  };
+
+  const navigateThumbnails = (direction) => {
+    const newIndex =
+      direction === 'up'
+        ? selectedThumbnail - 1
+        : selectedThumbnail + 1;
+
+    if (newIndex >= 0 && newIndex < selectedProduct.images.length) {
+      setSelectedThumbnail(newIndex);
+    }
   };
 
   const toggleFavorite = () => {
@@ -53,6 +67,10 @@ const ProductDetail = () => {
             ...productFromBackend,
             imagen: productFromJSON.imagen,
           };
+          console.log('productFromJSON--->',productFromJSON.imagen);
+          console.log('productFromBackend--->',productFromBackend);
+          console.log('mergedProduct--->',mergedProduct);
+
           setSelectedProduct(mergedProduct);
         } else {
           setSelectedProduct(productFromBackend);
@@ -81,6 +99,15 @@ const ProductDetail = () => {
     return <div className="error-container">Producto no encontrado</div>;
   }
 
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+
   return (
     <>
       <div className="productDetail-header">
@@ -101,16 +128,21 @@ const ProductDetail = () => {
                 src={selectedProduct.imagen[selectedThumbnail].url}
                 alt={`Producto ${selectedProduct.id} Imagen principal`}
                 className="main-image"
+                onClick={() => setShowCarousel(true)} 
               />
-              <button onClick={() => setShowCarousel(true)} className="ver-mas-button">Ver más</button>
             </div>
             <div className="thumbnail-container">
-              <img
-                key={selectedThumbnail}
-                src={selectedProduct.imagen[selectedThumbnail].url}
-                alt={`Producto ${selectedProduct.id} Imagen ${selectedThumbnail + 1}`}
-                className={`product-thumbnail selected`}
-              />
+              {selectedProduct.imagen.map((image, index) => (
+                <img
+                  key={index}
+                  src={image.url}
+                  alt={`Producto ${selectedProduct.id} Imagen ${index + 1}`}
+                  className={`product-thumbnail ${
+                    index === selectedThumbnail ? 'selected' : ''
+                  }`}
+                  onClick={() => changeThumbnail(index)}
+                />
+              ))}
             </div>
           </div>
           <div className="product-details">
@@ -163,16 +195,24 @@ const ProductDetail = () => {
             )} 
 
             <div className="boton-container">
-              <ReservationButton/>
+              <button onClick={() => setShowModal(true)}>Quiero reservar</button>
             </div> 
+
           </div>
-          <Calendario />
         </div>
       </div>
-      {showCarousel && (
+      <Modal mostrar={showModal} onClose={handleCloseModal}>
+          <div className="modal-contenido">
+            <h2>Selecciona tu fecha de reserva</h2>
+            <Calendario />
+            <div className="boton-container">
+              <ReservationButton />
+            </div>
+          </div>
+        </Modal>            
+        <Modal mostrar={showCarousel} onClose={handleCloseModal}>
         <div className="carousel-overlay">
           <div className="carousel-container">
-            <span className="carousel-close" onClick={handleCloseCarousel}>X</span>
             <Carousel showArrows={true} showThumbs={false} selectedItem={selectedThumbnail}>
               {selectedProduct.imagen.map((image, index) => (
                 <div key={index}>
@@ -182,22 +222,9 @@ const ProductDetail = () => {
             </Carousel>
           </div>
         </div>
-      )}
+        </Modal>            
     </>
   );
 };
 
 export default ProductDetail;
-
-
-
-
-
-
-
-
-
-
-
-
-
