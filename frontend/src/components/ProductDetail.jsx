@@ -5,6 +5,7 @@ import '../components/css/ProductDetail.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext'; 
 import Calendario from './Calendario';
+import ReservationButton from './ReservationButton';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -189,8 +190,8 @@ const ProductDetail = () => {
 
 
             <div className="boton-container">
-<button className="confirmar-btn">Reservar</button>
-</div> 
+            <ReservationButton/>
+            </div> 
 
           </div>
           <Calendario />
