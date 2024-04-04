@@ -8,7 +8,7 @@ const MaybeShowHeaderAndFooter = ({ children }) => {
 
   // Lista de rutas en las que no se debe mostrar el encabezado y el pie de página
   
-  const excludedRoutes = ['/register', '/login', '/homeuser', '/confirm-reservation-positive', '/confirm-reservation-negative','/homeprofile'];
+  const excludedRoutes = ['/register', '/login', '/homeuser', '/confirm-reservation-positive', '/confirm-reservation-negative'];
 
   // Verifica si la ruta actual está en la lista de rutas excluidas
   const shouldShowHeaderAndFooter = !excludedRoutes.includes(location.pathname);
