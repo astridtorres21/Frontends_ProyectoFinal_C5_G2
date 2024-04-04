@@ -1,10 +1,13 @@
 import React from 'react';
 import './css/PositiveBody.css';
 
-function PositiveBody() {
+function ReservationConfirm() {
   return (
     <div className="body-container">
-      <img src="images/PositiveBody/positive.png" alt="Reserva Confirmada" className="confirmation-image" />
+      <img 
+        src={process.env.PUBLIC_URL + '/images/confirm.png'}
+        alt="Reserva Confirmada" className="confirmation-image" 
+      />
       <div className="confirmation-info">
         <h2 className="confirmation-title">¡Reserva Confirmada!</h2>
         <p className="confirmation-message">
@@ -19,4 +22,4 @@ function PositiveBody() {
   );
 }
 
-export default PositiveBody;
+export default ReservationConfirm;

@@ -7,16 +7,8 @@ import ReservationConfirmation from './components/ReservationConfirmation';
 import Body from './components/Body';
 import Login from './components/Login';
 import HomeUser from './components/HomeUser';
-import HomeProfile from './components/HomeProfile';
 import Profile from './components/Profile';
 import { AuthProvider } from './AuthContext';
-import ReservationConfirmationPositive from './components/ReservationConfirmationPositive';
-import ReservationConfirmationNegative from './components/ReservationConfirmationNegative';
-import ReservationDetail from './components/ReservationDetail';
-
-
-
-
 
 import './App.css';
 
@@ -34,12 +26,8 @@ function App() {
               <Route exact path="/login" element={<Login />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/confirm-reservation" element={<ReservationConfirmation />} />
-              <Route path="/homeprofile" element={<HomeProfile />} />
+              <Route path="/homeprofile" element={<Profile />} />
               <Route path="/homeuser" element={<HomeUser />} />
-              <Route path="/perfil" element={<Profile />} />
-                <Route path="/confirm-reservation-positive" element={<ReservationConfirmationPositive />} />
-              <Route path="/confirm-reservation-negative" element={<ReservationConfirmationNegative />} />
-              <Route path="/ReservationDetail" element={<ReservationDetail/>} />
             </Routes>
           </div>
         </MaybeShowHeaderAndFooter>

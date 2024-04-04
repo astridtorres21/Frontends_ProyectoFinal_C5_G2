@@ -1,10 +1,13 @@
 import React from 'react';
 import './css/NegativeBody.css';
 
-function NegativeBody() {
+function ReservationCancel() {
   return (
     <div className="body-container">
-      <img src="images/NegativeBody/negative.png" alt="Reserva Cancelada" className="cancelation-image" />
+      <img 
+        src={process.env.PUBLIC_URL + '/images/cancel.png'}
+        alt="Reserva Cancelada" className="cancelation-image" 
+      />
       <div className="cancelation-info">
         <h2 className="cancelation-title">¡Reserva Cancelada!</h2>
         <p className="cancelation-message">
@@ -18,4 +21,4 @@ function NegativeBody() {
   );
 }
 
-export default NegativeBody;
+export default ReservationCancel;

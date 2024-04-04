@@ -5,22 +5,43 @@ import '../components/css/ProductDetail.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext'; 
 import Calendario from './Calendario';
-import ReservationButton from './ReservationButton';
+import ReservationDetail from './ReservationDetail';
+import ReservationConfirm from './ReservationConfirm';
+import ReservationCancel from './ReservationCancel';
+import Modal from './Modal'; 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
 
 const ProductDetail = () => {
   const { id } = useParams();
   const { isLogged } = useAuth();
 
+  const [userId, setUserID] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedThumbnail, setSelectedThumbnail] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [showCarousel, setShowCarousel] = useState(false);
+  const [reservationConfirmation, setReservationConfirmation] = useState(null);
+  const [reservationDates, setReservationDates] = useState({
+    startDate: null,
+    endDate: null
+  });
+  const [modalType, setModalType] = useState(null);
 
   const changeThumbnail = (index) => {
     setSelectedThumbnail(index);
+  };
+
+  const navigateThumbnails = (direction) => {
+    const newIndex =
+      direction === 'up'
+        ? selectedThumbnail - 1
+        : selectedThumbnail + 1;
+
+    if (newIndex >= 0 && newIndex < selectedProduct.images.length) {
+      setSelectedThumbnail(newIndex);
+    }
   };
 
   const toggleFavorite = () => {
@@ -35,9 +56,15 @@ const ProductDetail = () => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   };
 
-  const handleCloseCarousel = () => {
-    setShowCarousel(false);
-  };
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSelectedThumbnail(prevIndex => (prevIndex + 1) % selectedProduct.imagen.length);
+    }, 3000);
+
+    return () => {
+      clearInterval(intervalId); 
+    };
+  }, [selectedProduct]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,11 +80,16 @@ const ProductDetail = () => {
             ...productFromBackend,
             imagen: productFromJSON.imagen,
           };
+          console.log('productFromJSON--->',productFromJSON.imagen);
+          console.log('productFromBackend--->',productFromBackend);
+          console.log('mergedProduct--->',mergedProduct);
+
           setSelectedProduct(mergedProduct);
         } else {
           setSelectedProduct(productFromBackend);
         }
 
+        setUserID(localStorage.getItem('userId'));
         setLoading(false);
       } catch (error) {
         console.error('Error al obtener los datos del servidor:', error);
@@ -81,6 +113,45 @@ const ProductDetail = () => {
     return <div className="error-container">Producto no encontrado</div>;
   }
 
+  const handleCloseModal = () => {
+    setModalType(null);
+  };
+  
+  const handleConfirmReserve = (startDate, endDate) => {
+    setReservationDates({ startDate, endDate });
+    setModalType('reservationDetail');
+    console.log('startDate-->',startDate);
+    console.log('endDate-->', endDate);
+    return;
+  };
+
+  const handleReserve = () => {
+      const { startDate, endDate } = reservationDates;
+      const reservaData = {
+      usuarioId: userId,
+      instrumentoId: id,
+      fechaInicial: startDate.toISOString().split("T")[0],
+      fechaFinal: endDate.toISOString().split("T")[0]
+    };
+
+    fetch('/reservas/agregar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}` 
+      },
+      body: JSON.stringify(reservaData),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error al reservar');
+      }
+      setModalType('reservationConfirm');
+    })
+    .catch(error => {
+      console.error('Error de reserva:', error);
+    });
+  };
   return (
     <>
       <div className="productDetail-header">
@@ -101,16 +172,21 @@ const ProductDetail = () => {
                 src={selectedProduct.imagen[selectedThumbnail].url}
                 alt={`Producto ${selectedProduct.id} Imagen principal`}
                 className="main-image"
+                onClick={() => setModalType('carousel')} 
               />
-              <button onClick={() => setShowCarousel(true)} className="ver-mas-button">Ver más</button>
             </div>
             <div className="thumbnail-container">
-              <img
-                key={selectedThumbnail}
-                src={selectedProduct.imagen[selectedThumbnail].url}
-                alt={`Producto ${selectedProduct.id} Imagen ${selectedThumbnail + 1}`}
-                className={`product-thumbnail selected`}
-              />
+              {selectedProduct.imagen.map((image, index) => (
+                <img
+                  key={index}
+                  src={image.url}
+                  alt={`Producto ${selectedProduct.id} Imagen ${index + 1}`}
+                  className={`product-thumbnail ${
+                    index === selectedThumbnail ? 'selected' : ''
+                  }`}
+                  onClick={() => changeThumbnail(index)}
+                />
+              ))}
             </div>
           </div>
           <div className="product-details">
@@ -161,43 +237,64 @@ const ProductDetail = () => {
                 Precio por día: ${selectedProduct.precioDia}
               </p>
             )} 
-
+            {isLogged && (
             <div className="boton-container">
-              <ReservationButton/>
+              <button onClick={() => setModalType('calendar')}>Quiero reservar</button>
             </div> 
+            )}
           </div>
-          <Calendario />
         </div>
       </div>
-      {showCarousel && (
-        <div className="carousel-overlay">
-          <div className="carousel-container">
-            <span className="carousel-close" onClick={handleCloseCarousel}>X</span>
-            <Carousel showArrows={true} showThumbs={false} selectedItem={selectedThumbnail}>
-              {selectedProduct.imagen.map((image, index) => (
-                <div key={index}>
-                  <img src={image.url} alt={`Producto ${selectedProduct.id} Imagen ${index + 1}`} />
-                </div>
-              ))}
-            </Carousel>
+      <Modal mostrar={modalType === 'calendar'} onClose={handleCloseModal}>
+          <div className="modal-contenido">
+            <h2>Selecciona tu fecha de reserva</h2>
+            
+            <Calendario instrumentId={id} onConfirmReserve={handleConfirmReserve}/>
           </div>
+      </Modal>
+      <Modal mostrar={modalType === 'carousel'} onClose={handleCloseModal}>
+      <div className="carousel-overlay">
+        <div className="carousel-container">
+          <Carousel showArrows={true} showThumbs={false} selectedItem={selectedThumbnail}>
+            {selectedProduct.imagen.map((image, index) => (
+              <div key={index}>
+                <img 
+                  src={image.url} 
+                  alt={`Producto ${id} Imagen ${index + 1}`} 
+                  style={{ 
+                    maxWidth: '100%', 
+                    height: 'auto',
+                    marginBottom: '10px',
+                    aspectRatio: '3/2',
+                    objectFit: 'contain'
+                  }}     
+
+                />
+              </div>
+            ))}
+          </Carousel>
         </div>
-      )}
+      </div>
+      </Modal>  
+      <Modal mostrar={modalType === 'reservationDetail'} onClose={handleCloseModal}>
+        <ReservationDetail
+          product={selectedProduct}
+          userId={userId}
+          startDate={reservationDates.startDate!=null?reservationDates.startDate.toISOString().split("T")[0]:''}
+          endDate={reservationDates.endDate!=null?reservationDates.endDate.toISOString().split("T")[0]:''}
+          setModalType={setModalType} 
+          onReserve={handleReserve}
+        />
+
+      </Modal>
+      <Modal mostrar={modalType === 'reservationConfirm'} onClose={handleCloseModal}>
+        <ReservationConfirm/>
+      </Modal>
+      <Modal mostrar={modalType === 'reservationCancel'} onClose={handleCloseModal}>
+        <ReservationCancel />
+      </Modal>
     </>
   );
 };
 
 export default ProductDetail;
-
-
-
-
-
-
-
-
-
-
-
-
-
