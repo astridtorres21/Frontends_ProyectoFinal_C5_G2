@@ -83,7 +83,7 @@ p {
 }
 
 .main-image {
-  width: 100%; 
+  width: 90%; 
   height: auto;
   margin-bottom: 10px;
   aspect-ratio: 3/2;
@@ -149,6 +149,7 @@ p {
 }
 
 .image-wrapper {
+  width: 70%; 
   position: relative;
   display: inline-block;
 }

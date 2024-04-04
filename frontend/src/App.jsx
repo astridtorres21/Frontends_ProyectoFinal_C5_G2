@@ -10,13 +10,6 @@ import HomeUser from './components/HomeUser';
 import HomeProfile from './components/HomeProfile';
 import Profile from './components/Profile';
 import { AuthProvider } from './AuthContext';
-import ReservationConfirmationPositive from './components/ReservationConfirmationPositive';
-import ReservationConfirmationNegative from './components/ReservationConfirmationNegative';
-import ReservationDetail from './components/ReservationDetail';
-
-
-
-
 
 import './App.css';
 
@@ -37,9 +30,6 @@ function App() {
               <Route path="/homeprofile" element={<HomeProfile />} />
               <Route path="/homeuser" element={<HomeUser />} />
               <Route path="/perfil" element={<Profile />} />
-                <Route path="/confirm-reservation-positive" element={<ReservationConfirmationPositive />} />
-              <Route path="/confirm-reservation-negative" element={<ReservationConfirmationNegative />} />
-              <Route path="/ReservationDetail" element={<ReservationDetail/>} />
             </Routes>
           </div>
         </MaybeShowHeaderAndFooter>
