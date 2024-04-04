@@ -8,17 +8,20 @@
   text-align: center;
   margin: 0 auto;
   padding: 10px;
+  background-color: #512DA8;
 }
 
 .productDetail-header-title-left {
   padding: 10px;
   flex: 1;
   text-align: left;
-  background-color:  #e4a951;
+
 }
 
 .productDetail-header-title-left > h1 {
-  font-size: medium;
+  font-size: 20px;
+  color: #ffff;
+  
 }
 
 .productDetail-header-right {
@@ -26,7 +29,7 @@
   flex: 2;
   text-align: right;
   width: 70%;
-  background: #000;
+  background: #512DA8;
 }
 
 
@@ -46,12 +49,15 @@
 .product-details {
   flex: 0.5;
   padding: 20px;
-  background-color: #e4a951;
+  background-color: #ffffff;
   color: #000000;
   border-radius: 10px; /* Añadido: Borde redondeado */
   margin-left: 20px; /* Añadido: Separación entre imágenes y detalles */
 
 }
+
+
+
 
 .product-image {
   max-width: 100%;
@@ -65,8 +71,8 @@ h1 {
 }
 
 p {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 2;
 }
 
 
@@ -77,7 +83,7 @@ p {
 }
 
 .main-image {
-  width: 100%; 
+  width: 90%; 
   height: auto;
   margin-bottom: 10px;
   aspect-ratio: 3/2;
@@ -130,4 +136,26 @@ p {
   .product-thumbnail {
     width: 100%;
   }
+}
+
+.confirmar-btn {
+  background-color: #6a5acd; /* Púrpura */
+  color: #fff;
+  margin-right: 10px;
+}
+
+.confirmar-btn:hover, .cancelar-btn:hover {
+  background-color: #483d8b; /* Púrpura oscuro al hacer hover */
+}
+
+.image-wrapper {
+  width: 70%; 
+  position: relative;
+  display: inline-block;
+}
+
+.ver-mas-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }

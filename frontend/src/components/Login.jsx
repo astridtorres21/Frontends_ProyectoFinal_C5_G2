@@ -69,6 +69,7 @@ function Login() {
       </div>
       <div className="right-section">
         <form className='form-login' onSubmit={handleSubmit}>
+          <span className= 'recordatorio'>Recordatorio: para reservar debe "Iniciar Sesión", en el caso de no tener cuenta debe "Crear Cuenta"</span>
         <h3>Iniciar sesión</h3>
           <div className="input-group">
             <label htmlFor="username"></label>
