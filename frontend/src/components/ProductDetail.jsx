@@ -57,6 +57,16 @@ const ProductDetail = () => {
   };
 
   useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSelectedThumbnail(prevIndex => (prevIndex + 1) % selectedProduct.imagen.length);
+    }, 3000);
+
+    return () => {
+      clearInterval(intervalId); 
+    };
+  }, [selectedProduct]);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('/instrumentos/buscarPorId/' + parseInt(id));
@@ -248,7 +258,18 @@ const ProductDetail = () => {
           <Carousel showArrows={true} showThumbs={false} selectedItem={selectedThumbnail}>
             {selectedProduct.imagen.map((image, index) => (
               <div key={index}>
-                <img src={image.url} alt={`Producto ${id} Imagen ${index + 1}`} />
+                <img 
+                  src={image.url} 
+                  alt={`Producto ${id} Imagen ${index + 1}`} 
+                  style={{ 
+                    maxWidth: '100%', 
+                    height: 'auto',
+                    marginBottom: '10px',
+                    aspectRatio: '3/2',
+                    objectFit: 'contain'
+                  }}     
+
+                />
               </div>
             ))}
           </Carousel>
@@ -259,8 +280,8 @@ const ProductDetail = () => {
         <ReservationDetail
           product={selectedProduct}
           userId={userId}
-          startDate={reservationDates.startDate.toISOString().split("T")[0]}
-          endDate={reservationDates.endDate.toISOString().split("T")[0]}
+          startDate={reservationDates.startDate!=null?reservationDates.startDate.toISOString().split("T")[0]:''}
+          endDate={reservationDates.endDate!=null?reservationDates.endDate.toISOString().split("T")[0]:''}
           setModalType={setModalType} 
           onReserve={handleReserve}
         />
