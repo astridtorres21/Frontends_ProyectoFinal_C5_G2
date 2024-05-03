@@ -39,29 +39,32 @@ const DetalleReserva = ({ product, userId, startDate, endDate, setModalType, onR
   };
 
   return (
-    <div className="detalle-reserva-container">
-      <div className="tarjeta">
-        <h2><strong>Detalle de Reserva</strong></h2>
+    <div className="tarjeta">
+      <h2><strong>Detalle de Reserva</strong></h2>
+      <div className="info-container">
         <div className="producto-info">
-          <p><strong>Producto:</strong> {product.nombre}</p>
-          <p>{product.descripcion}</p>
-          <p>Precio por día: ${product.precioDia}</p>          
-          <p><strong>Fechas de Reserva:</strong></p>
-          <p>Desde {startDate} hasta {endDate}</p>         
-          <p><strong>Duración:</strong> {differenceInDays()} días</p> 
+          <div className="info-item">
+            <p><strong>{product.nombre}</strong></p>
+            <p>{product.descripcion}</p>
+            <p><strong>Precio por día:</strong> ${product.precioDia}</p>
+            <p><strong>Reservado:</strong> Desde {startDate} hasta {endDate} ({differenceInDays()} días)</p>
+          </div>
         </div>
         <div className="cliente-info">
-          <p><strong>Datos del cliente</strong></p>
-          {userData ? (
-            <>
-              <p><strong>Nombre:</strong> {userData.nombre}</p>
-              <p><strong>Apellido:</strong> {userData.apellido}</p>
-              <p><strong>Correo Electrónico:</strong> {userData.username}</p>
-            </>
-          ) : (
-            <p>Cargando datos del usuario...</p>
-          )}
+          <div className="info-item">
+            <p><strong>Datos del cliente</strong></p>
+            {userData ? (
+              <>
+                <p><strong>Nombre:</strong> {userData.nombre} {userData.apellido}</p>
+                <p><strong>Correo Electrónico:</strong> {userData.username}</p>
+              </>
+            ) : (
+              <p>Cargando datos del usuario...</p>
+            )}
+          </div>
         </div>
+      </div>
+      <div className="acciones-container">
         <p><strong>¿Listo para Confirmar tu Reserva?</strong></p>
         <p>Haz clic en el botón "Confirmar Reserva" a continuación para asegurar tu Saxofón alto Selmer AS42 y comenzar tu aventura musical.</p>
         <div className="botones-container">
